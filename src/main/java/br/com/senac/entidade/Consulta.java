@@ -16,6 +16,7 @@ public class Consulta {
 	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dia;
+	
 	@Column(nullable = false)
 	private BigDecimal valor;
 	

@@ -21,8 +21,6 @@ public class Cachorro extends Animal{
 		this.treinado = treinado;
 	}
 	
-	
-
 	public boolean isTreinado() {
 		return treinado;
 	}
@@ -30,6 +28,5 @@ public class Cachorro extends Animal{
 	public void setTreinado(boolean treinado) {
 		this.treinado = treinado;
 	}
-	
 	
 }
