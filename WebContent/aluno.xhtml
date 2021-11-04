@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:adm="http://github.com/adminfaces"
+	template="/WEB-INF/templates/layout.xhtml">
+
+	<h:outputStylesheet library="css" name="default.css" />
+	<h:outputStylesheet name="./css/cssLayout.css" />
+	<h:outputStylesheet library="css" name="primeflex.min.css" />
+
+	<ui:define name="content">
+		<p:panel header="Alunos">
+
+			<p:tabView id="tab_view" activeIndex="#{alunoC.aba}">
+				<p:ajax event="tabChange" listener="#{alunoC.onTabChange}"
+					update="tab_view:form_novo:turma" />
+				<p:ajax event="tabClose" listener="#{alunoC.onTabClose}" />
+
+				<p:tab title="Novo">
+					<h:form id="form_novo">
+						<div class="ui-fluid p-formgrid p-grid">
+
+							<div class="p-field p-col-12 p-md-2">
+								<p:outputLabel for="mat" value="Matrícula" />
+								<p:inputText id="mat" value="#{alunoC.aluno.matricula}"
+									required="true" placeholder="Matrícula"
+									requiredMessage="Matricula é Obrigatório!">
+									<p:keyFilter mask="mat" />
+								</p:inputText>
+								<span class="help-block"> <p:message for="mat" /></span>
+							</div>
+
+							<p:spacer width="16.80%" />
+
+							<div class="p-field p-col-12 p-md-2">
+								<p:outputLabel for="turma" value="Pelotão" />
+								<p:selectOneMenu id="turma" value="#{alunoC.turma.id}"
+									required="true" requiredMessage="Profissão é Obrigatório!"
+									filter="true" filterMatchMode="startsWith">
+
+									<f:selectItem itemLabel="Escolha um pelotão" itemValue="" />
+									<f:selectItems value="#{alunoC.comboTurmas}" />
+								</p:selectOneMenu>
+							</div>
+
+							<p:spacer width="16.80%" />
+							<div class="p-field p-col-12 p-md-4">
+								<p:outputLabel for="nome" value="Nome " />
+								<p:inputText id="nome" value="#{alunoC.aluno.nome}"
+									required="true" placeholder="Digite o Nome Completo"
+									requiredMessage="Nome é Obrigatório!" />
+								<span class="help-block" aria-disabled="off"> <p:message
+										for="nome" /></span>
+							</div>
+
+							<div class="p-field p-col-12 p-md-4">
+								<p:outputLabel for="cpf" value="CPF " />
+								<p:inputMask id="cpf" value="#{alunoC.aluno.cpf}"
+									autocomplete="off" mask="999.999.999-99" required="true"
+									placeholder="Digite o CPF" requiredMessage="CPF é Obrigatório!" />
+								<span class="help-block"> <p:message for="cpf" /></span>
+							</div>
+
+							<div class="p-field p-col-12 p-md-4">
+								<p:outputLabel for="rg" value="RG " />
+								<p:inputText id="rg" value="#{alunoC.aluno.rg}"
+									autocomplete="off" mask="99999999999" required="true"
+									placeholder="Digite o RG" requiredMessage="RG é Obrigatório!">
+									<p:keyFilter mask="num" />
+								</p:inputText>
+								<span class="help-block"> <p:message for="rg" /></span>
+							</div>
+
+							<div class="p-field p-col-12 p-md-4">
+								<p:outputLabel for="titulo" value="Título de Eleitor" />
+								<p:inputText id="titulo" value="#{alunoC.aluno.tituloEleitor}"
+									autocomplete="off" required="true"
+									placeholder="Digite o Título de Eleitor"
+									requiredMessage="Título de Eleitor é Obrigatório!">
+									<p:keyFilter mask="num" />
+								</p:inputText>
+								<span class="help-block"> <p:message for="titulo" /></span>
+							</div>
+
+							<div class="p-field p-col-12 p-md-4">
+								<p:outputLabel for="nasc" value="Data de Nascimento " />
+								<p:datePicker id="nasc" autocomplete="off"
+									value="#{alunoC.aluno.dataNascimento}" showIcon="true"
+									required="true" placeholder="Data De Nascimento"
+									requiredMessage="Data de Nascimento é Obrigatório!"
+									monthNavigator="true" yearNavigator="true"
+									yearRange="1900:2030" />
+								<span class="help-block"> <p:message for="nasc" /></span>
+							</div>
+
+							<div class="p-field p-col-12 p-md-4">
+								<p:outputLabel for="tel" value="Telefone" />
+								<p:inputMask id="tel" value="#{alunoC.aluno.telefone}"
+									mask="(99)99999-9999" required="true"
+									placeholder="Digite o Telefone"
+									requiredMessage="Telefone é obrigatório!" />
+								<span class="help-block"> <p:message for="tel" /></span>
+							</div>
+
+							<div class="p-field p-col-12 p-md-4">
+								<p:outputLabel for="email" value="E-mail " />
+								<p:inputText id="email" value="#{alunoC.aluno.email}"
+									required="true" placeholder="Digite o E-mail"
+									requiredMessage="E-mail é Obrigatório!" />
+								<span class="help-block"> <p:message for="email" /></span>
+							</div>
+
+							<div class="p-field p-col-12 p-md-4">
+								<p:outputLabel for="senha" value="Senha " />
+								<p:password id="senha" value="#{alunoC.aluno.senha}"
+									required="true" placeholder="Digite a senha"
+									requiredMessage="Senha é Obrigatório!" />
+								<span class="help-block"> <p:message for="senha" /></span>
+							</div>
+
+							<p:spacer width="16.80%" />
+
+							<div class="p-field p-col-12 p-md-4">
+								<p:outputLabel for="nomePai" value="Nome do Pai" />
+								<p:inputText id="nomePai" value="#{alunoC.aluno.nomePai}"
+									required="true" placeholder="Digite o Nome Completo"
+									requiredMessage="Nome é Obrigatório!" />
+								<span class="help-block"> <p:message for="nomePai" /></span>
+							</div>
+
+							<div class="p-field p-col-12 p-md-4">
+								<p:outputLabel for="nomeMae" value="Nome da Mãe" />
+								<p:inputText id="nomeMae" value="#{alunoC.aluno.nomeMae}"
+									required="true" placeholder="Digite o Nome Completo"
+									requiredMessage="Nome é Obrigatório!" />
+								<span class="help-block"> <p:message for="nomeMae" /></span>
+							</div>
+							<p:spacer width="16.80%" />
+
+
+							<div class="p-field p-col-12 p-md-4">
+								<p:outputLabel for="cep" value="CEP" />
+								<p:inputMask id="cep" value="#{alunoC.endereco.cep}"
+									mask="99999-999" required="true" placeholder="Digite o CEP"
+									requiredMessage="CEP é Obrigatório!">
+
+									<p:ajax listener="#{alunoC.buscarCep}" event="blur"
+										update="rua, bairro, cidade, uf" />
+								</p:inputMask>
+								<span class="help-block"> <p:message for="cep" /></span>
+							</div>
+
+
+
+							<div class="p-field p-col-12 p-md-4">
+								<p:outputLabel for="rua" value="Logradouro" />
+								<p:inputText id="rua" value="#{alunoC.endereco.logradouro}"
+									required="true" placeholder="Logradouro"
+									requiredMessage="Logradouro é Obrigatório!" />
+								<span class="help-block"> <p:message for="rua" /></span>
+							</div>
+
+							<div class="p-field p-col-12 p-md-4">
+								<p:outputLabel for="numero" value="Número" />
+								<p:inputText id="numero" value="#{alunoC.endereco.numero}"
+									required="true" placeholder="Número"
+									requiredMessage="Número é Obrigatório!">
+									<p:keyFilter mask="num" />
+								</p:inputText>
+								<span class="help-block"> <p:message for="numero" /></span>
+							</div>
+
+
+							<div class="p-field p-col-12 p-md-4 ">
+								<p:outputLabel for="bairro" value="Bairro" />
+								<p:inputText id="bairro" value="#{alunoC.endereco.bairro}"
+									required="true" placeholder="Bairro"
+									requiredMessage="Bairro é Obrigatório!" />
+								<span class="help-block"> <p:message for="bairro" /></span>
+							</div>
+
+							<div class="p-field p-col-12 p-md-4 ">
+								<p:outputLabel for="cidade" value="Cidade" />
+								<p:inputText id="cidade" value="#{alunoC.endereco.localidade}"
+									required="true" placeholder="Cidade"
+									requiredMessage="Cidade é Obrigatório!" />
+								<span class="help-block"> <p:message for="cidade" /></span>
+							</div>
+
+							<div class="p-field p-col-12 p-md-4 col-xs-3">
+								<p:outputLabel for="uf" value="Estado" />
+								<p:inputText id="uf" value="#{alunoC.endereco.uf}"
+									required="true" placeholder="Estado"
+									requiredMessage="Estado é Obrigatório!" />
+								<span class="help-block"> <p:message for="uf" /></span>
+							</div>
+
+							<div class="p-field p-col-12 p-md-4">
+								<p:outputLabel for="complemento" value="Complemento" />
+								<p:inputText id="complemento" autocomplete="off"
+									value="#{alunoC.endereco.complemento}" required="true"
+									placeholder="Complemento"
+									requiredMessage="Complemento é Obrigatório!" />
+								<span class="help-block"> <p:message for="complemento" /></span>
+							</div>
+
+							<div class="p-field p-col-12 p-md-4">
+								<p:outputLabel for="obs" value="Observação" />
+								<p:inputText id="obs" value="#{alunoC.endereco.observacao}"
+									placeholder="Observação" autocomplete="off" />
+							</div>
+
+						</div>
+
+						<!-- Botão salvar e Voltar -->
+						<p:commandButton value="Salvar" actionListener="#{alunoC.salvar}"
+							update="@form" styleClass="btn-primary" icon="pi pi-save" />
+					</h:form>
+				</p:tab>
+				<p:separator />
+
+
+				<p:tab title="Relatório">
+					<h:form id="form_relatório">
+
+						<div class="p-field p-col-12 p-md-10">
+							<p:outputLabel for="aluno" value="Nome" />
+							<p:spacer width="2%" />
+							<p:inputText id="aluno" value="#{alunoC.aluno.nome}" />
+							<p:spacer width="2%" />
+							<p:commandButton value="Pesquisar" update="tabela aluno"
+								action="#{alunoC.pesquisarPorNome}" styleClass="btn-primary" />
+						</div>
+
+						<p:commandButton value="PDF" icon="fa fa-file-pdf-o" ajax="false"
+							styleClass="p-mr-2 p-mb-2 ui-button-raised rounded-button ui-button-danger">
+							<p:dataExporter type="pdf" target="tabela" fileName="Aluno"
+								pageOnly="true" />
+						</p:commandButton>
+
+						<p:dataTable id="tabela" var="aluno" value="#{alunoC.modelAlunos}"
+							rows="10" paginator="true" paginatorPosition="bottom"
+							currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+							rowsPerPageTemplate="5,10,15,{ShowAll|'20'}">
+
+							<p:column headerText="Nome" style="text-align:center">
+								<h:outputText value="#{aluno.nome}" />
+							</p:column>
+
+							<p:column headerText="CPF" style="text-align:center">
+								<h:outputText value="#{aluno.cpf}" />
+							</p:column>
+
+							<p:column headerText="E-mail" style="text-align:center">
+								<h:outputText value="#{aluno.email}" />
+							</p:column>
+
+							<p:column headerText="Telefone" style="text-align:center">
+								<h:outputText value="#{aluno.telefone}" />
+							</p:column>
+
+							<p:column headerText="Ação" exportable="false">
+								<p:commandButton icon="fa fa-pencil-square-o" title="Alterar"
+									process="@this" actionListener="#{alunoC.alterar}"
+									update="@form" styleClass="rounded-button ui-button-info ui-button-info ui-button-flat"
+									oncomplete="#{alunoC.modelAlunos}" />
+
+								<p:spacer width="5" />
+
+								<p:commandButton icon="pi pi-trash" title="Excluir"
+									process="@this" actionListener="#{alunoC.excluir}"
+									update="tabela" styleClass="rounded-button ui-button-danger ui-button-danger ui-button-flat">
+									<p:confirm header="Confirmação"
+										message="Tem certeza de que deseja excluir o usuário?" />
+								</p:commandButton>
+							</p:column>
+						</p:dataTable>
+
+						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+							responsive="true" width="350">
+							<p:commandButton value="Sim" type="button"
+								styleClass="ui-confirmdialog-yes btn-success" />
+							<p:commandButton value="Não" type="button"
+								styleClass="ui-confirmdialog-no ui-button-flat btn-danger" />
+						</p:confirmDialog>
+					</h:form>
+				</p:tab>
+			</p:tabView>
+			<p:separator />
+		</p:panel>
+	</ui:define>
+</ui:composition>

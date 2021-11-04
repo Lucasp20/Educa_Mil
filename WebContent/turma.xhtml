@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/layout.xhtml">
+
+	<ui:define name="content">
+		<p:panel header="Pelotão">
+
+			<p:tabView id="tab_view" activeIndex="#{turmaC.aba}">
+				<p:ajax event="tabChange" listener="#{turmaC.onTabChange}" />
+				<p:ajax event="tabClose" listener="#{turmaC.onTabClose}" />
+
+				<p:tab title="Cadastros">
+					<h:form id="form_novo">
+					<div class="ui-fluid p-formgrid p-grid">
+
+						<div class="p-field p-col-12 p-md-4">
+							<p:outputLabel for="nome" value="Pelotão " />
+							<p:inputText id="nome" value="#{turmaC.turma.pelotao}"
+								required="true" placeholder="Digite o nome do pelotão"
+								requiredMessage="Nome do pelotão é Obrigatório!" />
+						</div>
+						<div class="p-field p-col-12 p-md-4">
+							<p:outputLabel for="ano" value="Ano Letivo " />
+							<p:inputText id="ano" value="#{turmaC.turma.ano}" required="true"
+								placeholder="Digite o ano letivo"
+								requiredMessage="Nome do pelotão é Obrigatório!" />
+						</div>
+						</div>
+
+						<!-- Botão salvar -->
+						<p:commandButton value="Salvar" actionListener="#{turmaC.salvar}"
+							update="@form" styleClass="btn-primary" icon="pi pi-save" />
+					</h:form>
+				</p:tab>
+				<p:separator />
+
+				<p:tab title="Relatório">
+					<h:form id="form_relatório">
+
+						<div class="p-field p-col-12 p-md-10">
+							<p:outputLabel for="turma" value="Nome" />
+							<p:spacer width="2%" />
+							<p:inputText id="turma" value="#{turmaC.turma.pelotao}" />
+							<p:spacer width="2%" />
+							<p:commandButton value="Pesquisar" update="tabela turma"
+								action="#{turmaC.pesquisarPorNome}" styleClass="btn-primary" />
+						</div>
+
+						<p:commandButton value="PDF" icon="fa fa-file-pdf-o" ajax="false"
+							styleClass="p-mr-2 p-mb-2 ui-button-raised rounded-button ui-button-danger">
+							<p:dataExporter type="pdf" target="tabela" fileName="Turmas"
+								pageOnly="true" />
+						</p:commandButton>
+
+						<p:dataTable id="tabela" var="turma" value="#{turmaC.modelturmas}"
+							rows="10" paginator="true" paginatorPosition="bottom"
+							currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+							rowsPerPageTemplate="5,10,15,{ShowAll|'20'}">
+
+							<p:column headerText="Nome" style="text-align:center">
+								<h:outputText value="#{turma.pelotao}" />
+							</p:column>
+
+							<p:column headerText="Ano Letivo" style="text-align:center">
+								<h:outputText value="#{turma.ano}" />
+							</p:column>
+
+							<p:column headerText="Ação" exportable="false">
+								<p:commandButton icon="fa fa-pencil-square-o" title="Alterar"
+									process="@this" actionListener="#{turmaC.alterar}"
+									update="@form" styleClass="rounded-button ui-button-info ui-button-info ui-button-flat"
+									oncomplete="#{turmaC.modelturmas}" />
+
+								<p:spacer width="5" />
+								<p:commandButton icon="pi pi-trash" title="Excluir"
+									process="@this" actionListener="#{turmaC.excluir}"
+									update="tabela" styleClass="rounded-button ui-button-danger ui-button-danger ui-button-flat">
+									<p:confirm header="Confirmação"
+										message="Tem certeza de que deseja a turma?" />
+								</p:commandButton>
+							</p:column>
+						</p:dataTable>
+
+						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+							responsive="true" width="350">
+							<p:commandButton value="Sim" type="button"
+								styleClass="ui-confirmdialog-yes btn-success" />
+							<p:commandButton value="Não" type="button"
+								styleClass="ui-confirmdialog-no ui-button-flat btn-danger" />
+						</p:confirmDialog>
+					</h:form>
+				</p:tab>
+			</p:tabView>
+		</p:panel>
+		<p:separator />
+	</ui:define>
+</ui:composition>

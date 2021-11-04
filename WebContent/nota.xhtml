@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:adm="http://github.com/adminfaces"
+	template="/WEB-INF/templates/layout.xhtml">
+
+	<h:outputStylesheet library="css" name="default.css" />
+	<h:outputStylesheet name="./css/cssLayout.css" />
+	<h:outputStylesheet library="css" name="primeflex.min.css" />
+
+	<ui:define name="content">
+		<p:panel header="Notas">
+
+			<p:tabView id="tab_view" activeIndex="#{notaC.aba}">
+				<p:ajax event="tabChange" listener="#{notaC.onTabChange}" />
+				<p:ajax event="tabClose" listener="#{notaC.onTabClose}" />
+
+				<p:tab title="Cadastros">
+					<h:form id="form_novo">
+						<div class="ui-fluid p-formgrid p-grid">
+							<div class="p-field p-col-12 p-md-4">
+								<p:outputLabel for="disciplina" value="Disciplina" />
+								<p:selectOneMenu id="disciplina" value="#{notaC.disciplina.id}"
+									dynamic="true">
+									<f:selectItem itemLabel="Escolha a disciplina" itemValue="" />
+									<f:selectItems value="#{notaC.comboDisciplinas}" />
+								</p:selectOneMenu>
+							</div>
+
+							<div class="ui-fluid p-formgrid p-grid">
+								<div class="p-field p-col-12 p-md-4">
+									<p:outputLabel for="turma" value="Pelotão" />
+									<p:selectOneMenu id="turma" value="#{notaC.turma.id}"
+										dynamic="true">
+										<f:selectItem itemLabel="Escolha o pelotão" itemValue="" />
+										<f:selectItems value="#{notaC.comboTurmas}" />
+									</p:selectOneMenu>
+								</div>
+							</div>
+
+							<!--Aqui começa a tabela de alunos-->
+							<div class="card">
+								<h5>Cadastro de notas de alunos</h5>
+								<p:dataTable id="notaAluno" var="notasAlunos"
+									value="#{notaC.modelNotas}" editable="true" editMode="cell"
+									widgetVar="cellProducts">
+
+									<p:ajax event="cellEdit" listener="#{dtEditView.onCellEdit}" />
+
+									<p:column headerText="Nome">
+										<f:facet name="output">
+											<h:outputText value="#{notaC.aluno.nome}" />
+										</f:facet>
+										<f:facet name="input">
+											<p:inputText id="nomeAluno" value="#{notaC.aluno.nome}"
+												style="width:100%" />
+										</f:facet>
+									</p:column>
+
+									<p:column headerText="Nota 1">
+										<p:cellEditor>
+											<f:facet name="output">
+												<h:outputText value="#{notaC.nota.notaUm}" />
+											</f:facet>
+											<f:facet name="input">
+												<p:inputText value="#{notaC.nota.notaUm}" style="width:100%"
+													label="notaUm" />
+											</f:facet>
+										</p:cellEditor>
+									</p:column>
+
+									<p:column headerText="Nota 2">
+										<p:cellEditor>
+											<f:facet name="output">
+												<h:outputText value="#{notaC.nota.notaDois}" />
+											</f:facet>
+											<f:facet name="input">
+												<p:inputText value="#{notaC.nota.notaDois}"
+													style="width:100%" label="notaDois" />
+											</f:facet>
+										</p:cellEditor>
+									</p:column>
+
+									<p:column headerText="Nota 3">
+										<p:cellEditor>
+											<f:facet name="output">
+												<h:outputText value="#{notaC.nota.notaTres}" />
+											</f:facet>
+											<f:facet name="input">
+												<p:inputText value="#{notaC.nota.notaTres}"
+													style="width:100%" label="notaTres" />
+											</f:facet>
+										</p:cellEditor>
+									</p:column>
+								</p:dataTable>
+							</div>
+
+
+						</div>
+						<p:separator />
+
+						
+						<!-- Botão salvar -->
+						<p:commandButton value="Salvar" actionListener="#{notaC.salvar}"
+							update="@form" styleClass="btn-primary" icon="pi pi-save" />
+					</h:form>
+				</p:tab>
+			</p:tabView>
+			</p:panel>		
+	</ui:define>
+</ui:composition>

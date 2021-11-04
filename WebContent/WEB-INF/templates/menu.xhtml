@@ -1,0 +1,38 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<nav class="aw-menu">
+		<h:form>
+			<p:menu toggleable="true" style="width: 98%;  margin-left: 3px;">
+
+				<p:menuitem value="Home" outcome="index.xhtml" icon="fa fa-home" />
+
+				<p:menuitem value="Direção" outcome="direcao.xhtml" icon="fa fa-user" />
+
+				<p:menuitem value="Professores" outcome="professor.xhtml"
+					icon="fa fa-graduation-cap" />
+
+				<p:menuitem value="Alunos" outcome="aluno.xhtml" icon="fa fa-users" />
+
+				<p:menuitem value="Pelotão" outcome="turma.xhtml" icon="fa fa-file" />
+
+				<p:menuitem value="Notas" outcome="nota.xhtml"
+					icon="fa fa-file-text" />
+
+				<p:menuitem value="Disciplinas" outcome="disciplina.xhtml"
+					icon="fa fa-file-text" />
+
+				<p:menuitem value="Biblioteca"
+					url="http://www.redebim.dphdm.mar.mil.br/" icon="fa fa-book"
+					target="_blank" />
+
+				<p:menuitem value="EAMSC" url="https://www.marinha.mil.br/eamsc/"
+					icon="fa fa-university" target="_blank" />
+			</p:menu>
+
+		</h:form>
+	</nav>
+
+</ui:composition>

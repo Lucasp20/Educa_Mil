@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:adm="http://github.com/adminfaces"
+	template="/WEB-INF/templates/layout.xhtml">
+
+	<h:outputStylesheet library="css" name="default.css" />
+	<h:outputStylesheet name="./css/cssLayout.css" />
+	<h:outputStylesheet library="css" name="primeflex.min.css" />
+
+
+	<ui:define name="content">
+		<p:panel header="Disciplinas">
+
+			<p:tabView id="tab_view" activeIndex="#{disciplinaC.aba}">
+			
+				<p:ajax event="tabChange" listener="#{disciplinaC.onTabChange}" />
+				<p:ajax event="tabClose" listener="#{disciplinaC.onTabClose}" />
+
+				<p:tab title="Cadastros">
+					<h:form id="form_novo">
+						<div class="ui-fluid p-formgrid p-grid">
+
+							<div class="p-field p-col-12 p-md-4">
+								<p:outputLabel for="disciplina " value="Disciplina" />
+								<p:inputText id="disciplina"
+									value="#{disciplinaC.disciplina.nome}" required="true"
+									placeholder="Digite o nome da Disciplina"
+									requiredMessage="Disciplina é Obrigatória!" />
+									<span class="help-block" aria-disabled="off"> <p:message
+										for="disciplina" /></span>
+							</div>
+
+							<div class="p-field p-col-12 p-md-4">
+								<p:outputLabel for="ens" value="Ensino" />
+								<p:inputText id="ens"
+									value="#{disciplinaC.disciplina.tipoEnsino}" required="true"
+									placeholder="Digite o Ensino"
+									requiredMessage="Ensino é Obrigatório!" />
+									<span class="help-block" aria-disabled="off"> <p:message
+										for="ens" /></span>
+							</div>
+
+							<div class="p-field p-col-12 p-md-4">
+								<p:outputLabel for="hr" value="Carga Horária " />
+								<p:inputText id="hr"
+									value="#{disciplinaC.disciplina.cargaHoraria}" required="true"
+									placeholder="Carga Horária"
+									requiredMessage="Carga Horária é Obrigatório!" />
+									<span class="help-block" aria-disabled="off"> <p:message
+										for="hr" /></span>
+							</div>
+						</div>
+
+						<p:commandButton value="Salvar" actionListener="#{disciplinaC.salvar}"
+							update="@form" styleClass="btn-primary" icon="pi pi-save" />
+					</h:form>
+				</p:tab>
+				<p:separator/>
+
+				<p:tab title="Relatório">
+					<h:form id="form_relatório">
+
+						<div class="p-field p-col-12 p-md-10">
+							<p:outputLabel for="disciplina" value="Nome" />
+							<p:spacer width="2%" />
+							<p:inputText id="disciplina" value="#{disciplinaC.disciplina.nome}" />
+							<p:spacer width="2%" />
+							<p:commandButton value="Pesquisar" update="tabela disciplina"
+								action="#{disciplinaC.pesquisarPorNome}" styleClass="btn-primary" />
+						</div>
+
+						<p:commandButton value="PDF" icon="fa fa-file-pdf-o" ajax="false"
+							styleClass="p-mr-2 p-mb-2 ui-button-raised rounded-button ui-button-danger">
+							<p:dataExporter type="pdf" target="tabela" fileName="Disciplinas"
+								pageOnly="true" />
+						</p:commandButton>
+
+						<p:dataTable id="tabela" var="disciplina"
+							value="#{disciplinaC.modeldisciplinas}" rows="10" paginator="true"
+							paginatorPosition="bottom"
+							currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+							rowsPerPageTemplate="5,10,15,{ShowAll|'20'}">
+
+							<p:column headerText="Nome" style="text-align:center">
+								<h:outputText value="#{disciplina.nome}" />
+							</p:column>
+
+							<p:column headerText="Ensino" style="text-align:center">
+								<h:outputText value="#{disciplina.tipoEnsino}" />
+							</p:column>
+
+							<p:column headerText="Carga Horária" style="text-align:center">
+								<h:outputText value="#{disciplina.cargaHoraria}" />
+							</p:column>
+
+							<p:column headerText="Ação" exportable="false">
+								<p:commandButton icon="fa fa-pencil-square-o" title="Alterar"
+									process="@this" actionListener="#{disciplinaC.alterar}"
+									update="@form" styleClass="rounded-button ui-button-info ui-button-info ui-button-flat"
+									oncomplete="#{disciplinaC.modeldisciplinas}" />
+
+								<p:spacer width="5" />
+								<p:commandButton icon="pi pi-trash" title="Excluir"
+									process="@this" actionListener="#{disciplinaC.excluir}"
+									update="tabela" styleClass="rounded-button ui-button-danger ui-button-danger ui-button-flat">
+									<p:confirm header="Confirmação"
+										message="Tem certeza de que deseja excluir a disciplina?" />
+								</p:commandButton>
+							</p:column>
+						</p:dataTable>
+
+						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+							responsive="true" width="350">
+							<p:commandButton value="Sim" type="button"
+								styleClass="ui-confirmdialog-yes btn-success" />
+							<p:commandButton value="Não" type="button"
+								styleClass="ui-confirmdialog-no ui-button-flat btn-danger" />
+						</p:confirmDialog>
+					</h:form>
+				</p:tab>
+			</p:tabView>
+			<p:separator/>
+			</p:panel>
+	</ui:define>
+</ui:composition>
