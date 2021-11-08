@@ -94,13 +94,7 @@
 								
 							</div>
 
-							<div class="p-field p-col-12 p-md-4">
-								<p:outputLabel for="senha" value="Senha " />
-								<p:password id="senha" value="#{professorC.professor.senha}"
-									required="true" placeholder="Digite a senha"
-									requiredMessage="Senha é Obrigatório!" />
-								
-							</div>
+							<p:spacer width="16.80%" />
 							<p:spacer width="16.80%" />
 
 							<div class="p-field p-col-12 p-md-4">
@@ -245,9 +239,9 @@
 						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
 							responsive="true" width="350">
 							<p:commandButton value="Sim" type="button"
-								styleClass="ui-confirmdialog-yes btn-success" />
+								styleClass="ui-confirmdialog-yes ui-button-raised ui-button-success" />
 							<p:commandButton value="Não" type="button"
-								styleClass="ui-confirmdialog-no ui-button-flat btn-danger" />
+								styleClass="ui-confirmdialog-no ui-button-raised ui-button-danger" />
 						</p:confirmDialog>
 
 					</h:form>

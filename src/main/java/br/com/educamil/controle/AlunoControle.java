@@ -45,9 +45,7 @@ public class AlunoControle {
 
 	public void salvar() throws NoSuchAlgorithmException {
 		sessao = HibernateUtil.abrirSessao();
-		String hash = new String(this.getHash(aluno));
 		try {
-			aluno.setSenha(hash);
 			endereco.setPessoa(aluno);
 			aluno.setEndereco(endereco);
 			aluno.setTurma(turma);
@@ -185,33 +183,6 @@ public class AlunoControle {
 
 	public void setTurma(Turma turma) {
 		this.turma = turma;
-	}
-
-	private String getHash(Aluno aluno) throws NoSuchAlgorithmException {
-		String senha = new String(aluno.getSenha());
-		byte[] digest = sha512(senha);
-		String hash = hexaToString(digest);
-		return hash;
-	}
-
-	private byte[] sha512(String message) throws NoSuchAlgorithmException {
-		MessageDigest md = MessageDigest.getInstance("SHA-512");
-		md.update(message.getBytes());
-		byte[] digest = md.digest();
-		return digest;
-	}
-
-	private String hexaToString(byte[] digest) {
-		// Convert digest to a string
-		StringBuffer hexString = new StringBuffer();
-		for (int i = 0; i < digest.length; i++) {
-			if ((0xff & digest[i]) < 0x10) {
-				hexString.append("0" + Integer.toHexString((0xFF & digest[i])));
-			} else {
-				hexString.append(Integer.toHexString(0xFF & digest[i]));
-			}
-		}
-		return hexString.toString();
 	}
 
 }

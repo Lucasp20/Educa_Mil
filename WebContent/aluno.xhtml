@@ -97,7 +97,6 @@
 									mask="(99)99999-9999" required="true"
 									placeholder="Digite o Telefone"
 									requiredMessage="Telefone é obrigatório!" />
-
 							</div>
 
 							<div class="p-field p-col-12 p-md-4">
@@ -105,24 +104,13 @@
 								<p:inputText id="email" value="#{alunoC.aluno.email}"
 									required="true" placeholder="Digite o E-mail"
 									requiredMessage="E-mail é Obrigatório!" />
-
 							</div>
-
-							<div class="p-field p-col-12 p-md-4">
-								<p:outputLabel for="senha" value="Senha " />
-								<p:password id="senha" value="#{alunoC.aluno.senha}"
-									required="true" placeholder="Digite a senha"
-									requiredMessage="Senha é Obrigatório!" />
-							</div>
-
-							<p:spacer width="16.80%" />
 
 							<div class="p-field p-col-12 p-md-4">
 								<p:outputLabel for="nomePai" value="Nome do Pai" />
 								<p:inputText id="nomePai" value="#{alunoC.aluno.nomePai}"
 									required="true" placeholder="Digite o Nome Completo"
 									requiredMessage="Nome do pai é Obrigatório!" />
-
 							</div>
 
 							<div class="p-field p-col-12 p-md-4">
@@ -131,7 +119,6 @@
 									required="true" placeholder="Digite o Nome Completo"
 									requiredMessage="Nome da mãe é Obrigatório!" />
 							</div>
-							<p:spacer width="16.80%" />
 
 							<div class="p-field p-col-12 p-md-4">
 								<p:outputLabel for="cep" value="CEP" />
@@ -268,9 +255,9 @@
 						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
 							responsive="true" width="350">
 							<p:commandButton value="Sim" type="button"
-								styleClass="ui-confirmdialog-yes btn-success" />
+								styleClass="ui-confirmdialog-yes ui-button-raised ui-button-success" />
 							<p:commandButton value="Não" type="button"
-								styleClass="ui-confirmdialog-no ui-button-flat btn-danger" />
+									styleClass="ui-confirmdialog-no ui-button-raised ui-button-danger" />
 						</p:confirmDialog>
 					</h:form>
 				</p:tab>

@@ -37,27 +37,7 @@ public class DirecaoControle {
 		direcaoDao = new DirecaoDaoImpl();
 	}
 
-	public void pesquisarPorNome() {
-		sessao = HibernateUtil.abrirSessao();
-		try {
-			diretores = direcaoDao.pesquisarPorNome(direcao.getNome(), sessao);
-			modeldiretores = new ListDataModel<>(diretores);
-			direcao.setNome(null);
-		} catch (HibernateException e) {
-			System.out.println("Erro ao pesquisar Diretores por nome" + e.getMessage());
-		}
-		sessao.close();
-	}
-	
-	public void buscarCep() {
-		System.out.println("CEP AQUI" + endereco.getCep());
-		WebServiceEndereco webservice = new WebServiceEndereco();
-		endereco = webservice.pesquisarCep(endereco.getCep());
-		if (endereco.getLogradouro() == null) {
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_WARN, "Não existe nenhum cep com esse valor", null));
-		}
-	}
+
 
 	public void salvar() throws NoSuchAlgorithmException {
 		sessao = HibernateUtil.abrirSessao();
@@ -101,6 +81,28 @@ public class DirecaoControle {
 		direcao = modeldiretores.getRowData();
 		endereco = direcao.getEndereco();
 		aba = 0;
+	}
+	
+	public void pesquisarPorNome() {
+		sessao = HibernateUtil.abrirSessao();
+		try {
+			diretores = direcaoDao.pesquisarPorNome(direcao.getNome(), sessao);
+			modeldiretores = new ListDataModel<>(diretores);
+			direcao.setNome(null);
+		} catch (HibernateException e) {
+			System.out.println("Erro ao pesquisar Diretores por nome" + e.getMessage());
+		}
+		sessao.close();
+	}
+	
+	public void buscarCep() {
+		System.out.println("CEP AQUI" + endereco.getCep());
+		WebServiceEndereco webservice = new WebServiceEndereco();
+		endereco = webservice.pesquisarCep(endereco.getCep());
+		if (endereco.getLogradouro() == null) {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_WARN, "Não existe nenhum cep com esse valor", null));
+		}
 	}
 	
 	/* mudar aba para novo */
@@ -156,31 +158,6 @@ public class DirecaoControle {
 
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
-	}
-	
-	private String getHash(Direcao direcao) throws NoSuchAlgorithmException {
-		String senha = new String(direcao.getSenha());
-		byte[] digest = sha512(senha);
-		String hash = hexaToString(digest);
-		return hash;
-	}
-	private byte[] sha512(String message) throws NoSuchAlgorithmException {
-		MessageDigest md = MessageDigest.getInstance("SHA-512");
-		md.update(message.getBytes());
-		byte[] digest = md.digest();
-		return digest;
-	}
-	
-	private String hexaToString(byte[] digest) {
-		StringBuffer hexString = new StringBuffer();
-		for (int i = 0; i < digest.length; i++) {
-			if ((0xff & digest[i]) < 0x10) {
-				hexString.append("0" + Integer.toHexString((0xFF & digest[i])));
-			} else {
-				hexString.append(Integer.toHexString(0xFF & digest[i]));
-			}
-		}
-		return hexString.toString();
 	}
 	
 

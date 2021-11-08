@@ -41,22 +41,12 @@ public class Pessoa implements Serializable {
 	@Column(nullable = false, length = 15, unique = true)
 	private String telefone;
 
-	@Column(nullable = false)
-	private String senha;
-
-	@Column(nullable = false)
-	private boolean enable;
-
 	@OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL)
 	private Endereco endereco;
-
-	@JoinColumn(name = "id_Perfil")
-	@ManyToOne
-	private Perfil perfil;
 	
 	
 	public Pessoa(String nome, String cpf, String rg, String tituloEleitor, String matricula, String email,
-			Date dataNascimento, String telefone, String senha, boolean enable) {
+			Date dataNascimento, String telefone) {
 		super();
 		this.nome = nome;
 		this.cpf = cpf;
@@ -66,8 +56,7 @@ public class Pessoa implements Serializable {
 		this.email = email;
 		this.dataNascimento = dataNascimento;
 		this.telefone = telefone;
-		this.senha = senha;
-		this.enable = enable;
+	
 	}
 	
 	public Pessoa() {
@@ -147,36 +136,12 @@ public class Pessoa implements Serializable {
 		this.telefone = telefone;
 	}
 	
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
 	public Endereco getEndereco() {
 		return endereco;
 	}
 
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
-	}
-
-	public Perfil getPerfil() {
-		return perfil;
-	}
-
-	public void setPerfil(Perfil perfil) {
-		this.perfil = perfil;
-	}
-	
-	public boolean isEnable() {
-		return enable;
-	}
-
-	public void setEnable(boolean enable) {
-		this.enable = enable;
 	}
 
 	@Override

@@ -8,42 +8,33 @@
 	template="/WEB-INF/templates/layout.xhtml">
 
 	<ui:define name="content">
-		<p:panel header="Disciplinas">
+		<p:panel header="Usuários do Sistema">
 
-			<p:tabView id="tab_view" activeIndex="#{disciplinaC.aba}">
-				<p:ajax event="tabChange" listener="#{disciplinaC.onTabChange}" />
-				<p:ajax event="tabClose" listener="#{disciplinaC.onTabClose}" />
+			<p:tabView id="tab_view" activeIndex="#{usuarioC.aba}">
+				<p:ajax event="tabChange" listener="#{usuarioC.onTabChange}" />
+				<p:ajax event="tabClose" listener="#{usuarioC.onTabClose}" />
 
 				<p:tab title="Cadastros">
 					<h:form id="form_novo">
 						<div class="ui-fluid p-formgrid p-grid">
 
 							<div class="p-field p-col-12 p-md-4">
-								<p:outputLabel for="disciplina " value="Disciplina" />
-								<p:inputText id="disciplina"
-									value="#{disciplinaC.disciplina.nome}" required="true"
-									placeholder="Digite o nome da Disciplina"
-									requiredMessage="Disciplina é Obrigatória!" />
+								<p:outputLabel for="login " value="Login" />
+								<p:inputText id="login" value="#{usuarioC.usuario.login}"
+									required="true" placeholder="Digite o Login"
+									requiredMessage="Login é Obrigatório!" />
 							</div>
 
 							<div class="p-field p-col-12 p-md-4">
-								<p:outputLabel for="ens" value="Ensino" />
-								<p:inputText id="ens"
-									value="#{disciplinaC.disciplina.tipoEnsino}" required="true"
-									placeholder="Digite o Ensino"
-									requiredMessage="Ensino é Obrigatório!" />
+								<p:outputLabel for="senha" value="Senha " />
+								<p:password id="senha" value="#{usuarioC.usuario.senha}"
+									required="true" placeholder="Digite a senha"
+									requiredMessage="Senha é Obrigatório!" />
 							</div>
 
-							<div class="p-field p-col-12 p-md-4">
-								<p:outputLabel for="hr" value="Carga Horária " />
-								<p:inputText id="hr"
-									value="#{disciplinaC.disciplina.cargaHoraria}" required="true"
-									placeholder="Carga Horária"
-									requiredMessage="Carga Horária é Obrigatório!" />
-							</div>
 						</div>
 						<p:commandButton value="Salvar"
-							actionListener="#{disciplinaC.salvar}" update="@form"
+							actionListener="#{usuarioC.salvar}" update="@form"
 							styleClass="btn-primary" icon="pi pi-save" />
 					</h:form>
 				</p:tab>
@@ -53,54 +44,46 @@
 					<h:form id="form_relatório">
 
 						<div class="p-field p-col-12 p-md-10">
-							<p:outputLabel for="disciplina" value="Nome" />
+							<p:outputLabel for="usuario" value="Login" />
 							<p:spacer width="2%" />
-							<p:inputText id="disciplina"
-								value="#{disciplinaC.disciplina.nome}" placeholder="Pesquisar" />
+							<p:inputText id="usuario"
+								value="#{usuarioC.usuario.login}" placeholder="Pesquisar" />
 							<p:spacer width="2%" />
-							<p:commandButton value="Pesquisar" update="tabela disciplina"
-								action="#{disciplinaC.pesquisarPorNome}"
+							<p:commandButton value="Pesquisar" update="tabela usuario"
+								action="#{usuarioC.pesquisarPorLogin}"
 								styleClass="btn-primary" />
 						</div>
 
 						<p:commandButton value="PDF" icon="fa fa-file-pdf-o" ajax="false"
 							styleClass="p-mr-2 p-mb-2 ui-button-raised rounded-button ui-button-danger">
-							<p:dataExporter type="pdf" target="tabela" fileName="Disciplinas"
+							<p:dataExporter type="pdf" target="tabela" fileName="Usuários"
 								pageOnly="true" />
 						</p:commandButton>
 
-						<p:dataTable id="tabela" var="disciplina"
-							value="#{disciplinaC.modeldisciplinas}" rows="10"
+						<p:dataTable id="tabela" var="usuario"
+							value="#{usuarioC.modelUsuarios}" rows="10"
 							paginator="true" paginatorPosition="bottom"
 							currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
 							rowsPerPageTemplate="5,10,15,{ShowAll|'20'}">
 
-							<p:column headerText="Nome" style="text-align:center">
-								<h:outputText value="#{disciplina.nome}" />
-							</p:column>
-
-							<p:column headerText="Ensino" style="text-align:center">
-								<h:outputText value="#{disciplina.tipoEnsino}" />
-							</p:column>
-
-							<p:column headerText="Carga Horária" style="text-align:center">
-								<h:outputText value="#{disciplina.cargaHoraria}" />
+							<p:column headerText="Login" style="text-align:center">
+								<h:outputText value="#{usuario.nome}" />
 							</p:column>
 
 							<p:column headerText="Ação" exportable="false">
 								<p:commandButton icon="fa fa-pencil-square-o" title="Alterar"
-									process="@this" actionListener="#{disciplinaC.alterar}"
+									process="@this" actionListener="#{usuarioC.alterar}"
 									update="@form"
 									styleClass="rounded-button ui-button-info ui-button-info ui-button-flat"
-									oncomplete="#{disciplinaC.modeldisciplinas}" />
+									oncomplete="#{usuarioC.modelUsuarios}" />
 
 								<p:spacer width="5" />
 								<p:commandButton icon="pi pi-trash" title="Excluir"
-									process="@this" actionListener="#{disciplinaC.excluir}"
+									process="@this" actionListener="#{usuarioC.excluir}"
 									update="tabela"
 									styleClass="rounded-button ui-button-danger ui-button-danger ui-button-flat">
 									<p:confirm header="Confirmação"
-										message="Tem certeza de que deseja excluir a disciplina?" />
+										message="Tem certeza de que deseja excluir o usuário" />
 								</p:commandButton>
 							</p:column>
 						</p:dataTable>

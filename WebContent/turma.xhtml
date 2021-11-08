@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -7,7 +7,7 @@
 	template="/WEB-INF/templates/layout.xhtml">
 
 	<ui:define name="content">
-		<p:panel header="PelotÃ£o">
+		<p:panel header="Pelotão">
 
 			<p:tabView id="tab_view" activeIndex="#{turmaC.aba}">
 				<p:ajax event="tabChange" listener="#{turmaC.onTabChange}" />
@@ -18,28 +18,28 @@
 						<div class="ui-fluid p-formgrid p-grid">
 
 							<div class="p-field p-col-12 p-md-4">
-								<p:outputLabel for="nome" value="PelotÃ£o " />
+								<p:outputLabel for="nome" value="Pelotão " />
 								<p:inputText id="nome" value="#{turmaC.turma.pelotao}"
-									required="true" placeholder="Digite o nome do pelotÃ£o"
-									requiredMessage="Nome do pelotÃ£o Ã© ObrigatÃ³rio!" />
+									required="true" placeholder="Digite o nome do pelotão"
+									requiredMessage="Nome do pelotão é Obrigatório!" />
 							</div>
 
 							<div class="p-field p-col-12 p-md-4">
 								<p:outputLabel for="ano" value="Ano Letivo " />
 								<p:inputText id="ano" value="#{turmaC.turma.ano}"
 									required="true" placeholder="Digite o ano letivo"
-									requiredMessage="Nome do pelotÃ£o Ã© ObrigatÃ³rio!" />
+									requiredMessage="Ano letivo é Obrigatório!" />
 							</div>
 						</div>
-						<!-- BotÃ£o salvar -->
+						<!-- Botão salvar -->
 						<p:commandButton value="Salvar" actionListener="#{turmaC.salvar}"
 							update="@form" styleClass="btn-primary" icon="pi pi-save" />
 					</h:form>
 				</p:tab>
 				<p:separator />
 
-				<p:tab title="RelatÃ³rio">
-					<h:form id="form_relatÃ³rio">
+				<p:tab title="Relatório">
+					<h:form id="form_relatório">
 
 						<div class="p-field p-col-12 p-md-10">
 							<p:outputLabel for="turma" value="Nome" />
@@ -70,7 +70,7 @@
 								<h:outputText value="#{turma.ano}" />
 							</p:column>
 
-							<p:column headerText="AÃ§Ã£o" exportable="false">
+							<p:column headerText="Ação" exportable="false">
 								<p:commandButton icon="fa fa-pencil-square-o" title="Alterar"
 									process="@this" actionListener="#{turmaC.alterar}"
 									update="@form"
@@ -82,7 +82,7 @@
 									process="@this" actionListener="#{turmaC.excluir}"
 									update="tabela"
 									styleClass="rounded-button ui-button-danger ui-button-danger ui-button-flat">
-									<p:confirm header="ConfirmaÃ§Ã£o"
+									<p:confirm header="Confirmação"
 										message="Tem certeza de que deseja a turma?" />
 								</p:commandButton>
 							</p:column>
@@ -91,9 +91,9 @@
 						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
 							responsive="true" width="350">
 							<p:commandButton value="Sim" type="button"
-								styleClass="ui-confirmdialog-yes btn-success" />
-							<p:commandButton value="NÃ£o" type="button"
-								styleClass="ui-confirmdialog-no ui-button-flat btn-danger" />
+								styleClass="ui-confirmdialog-yes ui-button-raised ui-button-success" />
+							<p:commandButton value="Não" type="button"
+								styleClass="ui-confirmdialog-no ui-button-raised ui-button-danger" />
 						</p:confirmDialog>
 					</h:form>
 				</p:tab>
