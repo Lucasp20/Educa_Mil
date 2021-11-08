@@ -20,21 +20,24 @@
 
 				<p:tab title="Cadastros">
 					<h:form id="form_novo">
+						
 						<div class="ui-fluid p-formgrid p-grid">
+						
 							<div class="p-field p-col-12 p-md-4">
 								<p:outputLabel for="disciplina" value="Disciplina" />
 								<p:selectOneMenu id="disciplina" value="#{notaC.disciplina.id}"
-									dynamic="true">
+									dynamic="true" filter="true" filterMatchMode="startsWith">
+									
 									<f:selectItem itemLabel="Escolha a disciplina" itemValue="" />
 									<f:selectItems value="#{notaC.comboDisciplinas}" />
 								</p:selectOneMenu>
-							</div>
+							</div>		
 
-							<div class="ui-fluid p-formgrid p-grid">
 								<div class="p-field p-col-12 p-md-4">
 									<p:outputLabel for="turma" value="Pelotão" />
 									<p:selectOneMenu id="turma" value="#{notaC.turma.id}"
-										dynamic="true">
+										dynamic="true" filter="true" filterMatchMode="startsWith">
+										
 										<f:selectItem itemLabel="Escolha o pelotão" itemValue="" />
 										<f:selectItems value="#{notaC.comboTurmas}" />
 									</p:selectOneMenu>
@@ -98,8 +101,6 @@
 								</p:dataTable>
 							</div>
 
-
-						</div>
 						<p:separator />
 
 						

@@ -31,7 +31,6 @@
 									requiredMessage="Nome do pelotão é Obrigatório!" />
 							</div>
 						</div>
-
 						<!-- Botão salvar -->
 						<p:commandButton value="Salvar" actionListener="#{turmaC.salvar}"
 							update="@form" styleClass="btn-primary" icon="pi pi-save" />
@@ -45,7 +44,8 @@
 						<div class="p-field p-col-12 p-md-10">
 							<p:outputLabel for="turma" value="Nome" />
 							<p:spacer width="2%" />
-							<p:inputText id="turma" value="#{turmaC.turma.pelotao}" />
+							<p:inputText id="turma" value="#{turmaC.turma.pelotao}"
+								placeholder="Pesquisar" />
 							<p:spacer width="2%" />
 							<p:commandButton value="Pesquisar" update="tabela turma"
 								action="#{turmaC.pesquisarPorNome}" styleClass="btn-primary" />

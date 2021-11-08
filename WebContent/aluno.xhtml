@@ -213,7 +213,7 @@
 						<div class="p-field p-col-12 p-md-10">
 							<p:outputLabel for="aluno" value="Nome" />
 							<p:spacer width="2%" />
-							<p:inputText id="aluno" value="#{alunoC.aluno.nome}" />
+							<p:inputText id="aluno" value="#{alunoC.aluno.nome}"  placeholder="Pesquisar" />
 							<p:spacer width="2%" />
 							<p:commandButton value="Pesquisar" update="tabela aluno"
 								action="#{alunoC.pesquisarPorNome}" styleClass="btn-primary" />

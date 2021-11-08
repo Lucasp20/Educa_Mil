@@ -24,7 +24,6 @@
 									value="#{disciplinaC.disciplina.nome}" required="true"
 									placeholder="Digite o nome da Disciplina"
 									requiredMessage="Disciplina é Obrigatória!" />
-									
 							</div>
 
 							<div class="p-field p-col-12 p-md-4">
@@ -33,7 +32,6 @@
 									value="#{disciplinaC.disciplina.tipoEnsino}" required="true"
 									placeholder="Digite o Ensino"
 									requiredMessage="Ensino é Obrigatório!" />
-									
 							</div>
 
 							<div class="p-field p-col-12 p-md-4">
@@ -42,15 +40,14 @@
 									value="#{disciplinaC.disciplina.cargaHoraria}" required="true"
 									placeholder="Carga Horária"
 									requiredMessage="Carga Horária é Obrigatório!" />
-									
 							</div>
 						</div>
-
-						<p:commandButton value="Salvar" actionListener="#{disciplinaC.salvar}"
-							update="@form" styleClass="btn-primary" icon="pi pi-save" />
+						<p:commandButton value="Salvar"
+							actionListener="#{disciplinaC.salvar}" update="@form"
+							styleClass="btn-primary" icon="pi pi-save" />
 					</h:form>
 				</p:tab>
-				<p:separator/>
+				<p:separator />
 
 				<p:tab title="Relatório">
 					<h:form id="form_relatório">
@@ -58,10 +55,12 @@
 						<div class="p-field p-col-12 p-md-10">
 							<p:outputLabel for="disciplina" value="Nome" />
 							<p:spacer width="2%" />
-							<p:inputText id="disciplina" value="#{disciplinaC.disciplina.nome}" />
+							<p:inputText id="disciplina"
+								value="#{disciplinaC.disciplina.nome}" placeholder="Pesquisar" />
 							<p:spacer width="2%" />
 							<p:commandButton value="Pesquisar" update="tabela disciplina"
-								action="#{disciplinaC.pesquisarPorNome}" styleClass="btn-primary" />
+								action="#{disciplinaC.pesquisarPorNome}"
+								styleClass="btn-primary" />
 						</div>
 
 						<p:commandButton value="PDF" icon="fa fa-file-pdf-o" ajax="false"
@@ -71,8 +70,8 @@
 						</p:commandButton>
 
 						<p:dataTable id="tabela" var="disciplina"
-							value="#{disciplinaC.modeldisciplinas}" rows="10" paginator="true"
-							paginatorPosition="bottom"
+							value="#{disciplinaC.modeldisciplinas}" rows="10"
+							paginator="true" paginatorPosition="bottom"
 							currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
 							rowsPerPageTemplate="5,10,15,{ShowAll|'20'}">
 
@@ -91,13 +90,15 @@
 							<p:column headerText="Ação" exportable="false">
 								<p:commandButton icon="fa fa-pencil-square-o" title="Alterar"
 									process="@this" actionListener="#{disciplinaC.alterar}"
-									update="@form" styleClass="rounded-button ui-button-info ui-button-info ui-button-flat"
+									update="@form"
+									styleClass="rounded-button ui-button-info ui-button-info ui-button-flat"
 									oncomplete="#{disciplinaC.modeldisciplinas}" />
 
 								<p:spacer width="5" />
 								<p:commandButton icon="pi pi-trash" title="Excluir"
 									process="@this" actionListener="#{disciplinaC.excluir}"
-									update="tabela" styleClass="rounded-button ui-button-danger ui-button-danger ui-button-flat">
+									update="tabela"
+									styleClass="rounded-button ui-button-danger ui-button-danger ui-button-flat">
 									<p:confirm header="Confirmação"
 										message="Tem certeza de que deseja excluir a disciplina?" />
 								</p:commandButton>
@@ -114,7 +115,7 @@
 					</h:form>
 				</p:tab>
 			</p:tabView>
-			<p:separator/>
-			</p:panel>
+			<p:separator />
+		</p:panel>
 	</ui:define>
 </ui:composition>
