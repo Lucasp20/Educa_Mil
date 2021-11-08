@@ -52,11 +52,11 @@ public class DisciplinaControle {
 			disciplinaDao.salvarOuAlterar(disciplina, sessao);
 			disciplina = null;
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Disciplina salva com Sucesso"));
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Disciplina salva com Sucesso", null));
 			modeldisciplinas= null;
 		} catch (HibernateException e) {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Erro ao salvar o Disciplina"));
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao salvar a Disciplina", null));
 		} finally {
 			sessao.close();
 		}
@@ -70,7 +70,7 @@ public class DisciplinaControle {
 			disciplinaDao.excluir(disciplina, sessao);
 			disciplina = null;
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Disciplina excluida com Sucesso"));
+					new FacesMessage(FacesMessage.SEVERITY_INFO,"Disciplina excluida com Sucesso", null));
 			modeldisciplinas = null;
 		} catch (HibernateException e) {
 			FacesContext.getCurrentInstance().addMessage(null,

@@ -69,11 +69,11 @@ public class DirecaoControle {
 			direcaoDao.salvarOuAlterar(direcao, sessao);
 			direcao = null;
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Responsável Salvo com Sucesso"));
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Responsável Salvo com Sucesso", null));
 			modeldiretores = null;
 		} catch (HibernateException e) {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Erro ao salvar o Responsável"));
+					new FacesMessage(FacesMessage.SEVERITY_ERROR,"Erro ao salvar o Responsável" , null));
 		} finally {
 			sessao.close();
 		}
