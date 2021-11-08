@@ -33,17 +33,7 @@ public class TurmaControle {
 		turmaDao = new TurmaDaoImpl();
 	}
 
-	public void pesquisarPorNome() {
-		sessao = HibernateUtil.abrirSessao();
-		try {
-			turmas = turmaDao.pesquisarPorNome(turma.getPelotao(), sessao);
-			modelturmas = new ListDataModel<>(turmas);
-			turma.setPelotao(null);
-		} catch (HibernateException e) {
-			System.out.println("Erro ao pesquisar turmas por pelotão" + e.getMessage());
-		}
-		sessao.close();
-	}
+
 
 	public void salvar() {
 		sessao = HibernateUtil.abrirSessao();
@@ -69,11 +59,11 @@ public class TurmaControle {
 			turmaDao.excluir(turma, sessao);
 			turma = null;
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Pelotão excluido com Sucesso"));
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Pelotão excluido com Sucesso", null));
 			modelturmas = null;
 		} catch (HibernateException e) {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao excluir Turmas", ""));
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao excluir Turmas", null));
 		} finally {
 			sessao.close();
 		}
@@ -83,6 +73,18 @@ public class TurmaControle {
 		turma = modelturmas.getRowData();
 		aba = 0;
 
+	}
+	
+	public void pesquisarPorNome() {
+		sessao = HibernateUtil.abrirSessao();
+		try {
+			turmas = turmaDao.pesquisarPorNome(turma.getPelotao(), sessao);
+			modelturmas = new ListDataModel<>(turmas);
+			turma.setPelotao(null);
+		} catch (HibernateException e) {
+			System.out.println("Erro ao pesquisar turmas por pelotão" + e.getMessage());
+		}
+		sessao.close();
 	}
 
 	/* mudar aba para novo */

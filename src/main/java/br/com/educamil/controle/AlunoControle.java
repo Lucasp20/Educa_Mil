@@ -54,11 +54,11 @@ public class AlunoControle {
 			alunoDao.salvarOuAlterar(aluno, sessao);
 			aluno = null;
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Aluno Salvo com Sucesso"));
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Aluno Salvo com Sucesso" , null));
 			modelAlunos = null;
 		} catch (HibernateException e) {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Erro ao salvar o Aluno"));
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao salvar o Aluno" , null));
 		} finally {
 			sessao.close();
 		}
@@ -71,11 +71,11 @@ public class AlunoControle {
 			alunoDao.excluir(aluno, sessao);
 			aluno = null;
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Aluno excluido com Sucesso"));
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Aluno excluido com Sucesso" , null));
 			modelAlunos = null;
 		} catch (HibernateException e) {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao excluir Aluno", ""));
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao excluir Aluno", null));
 		} finally {
 			sessao.close();
 		}
@@ -96,7 +96,7 @@ public class AlunoControle {
 			modelAlunos = new ListDataModel<>(alunos);
 			aluno.setNome(null);
 		} catch (HibernateException e) {
-			System.out.println("erro ao pesquisar alunos por nome: " + e.getMessage());
+			System.out.println("Erro ao pesquisar alunos por nome: " + e.getMessage());
 		} finally {
 			sessao.close();
 		}
@@ -108,7 +108,7 @@ public class AlunoControle {
 		endereco = webservice.pesquisarCep(endereco.getCep());
 		if (endereco.getLogradouro() == null) {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_WARN, null, "Não existe nenhum cep com esse valor"));
+					new FacesMessage(FacesMessage.SEVERITY_WARN, "Não existe nenhum cep com esse valor" , null));
 		}
 	}
 

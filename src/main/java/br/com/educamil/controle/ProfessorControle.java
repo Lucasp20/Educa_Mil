@@ -37,17 +37,7 @@ public class ProfessorControle {
 		professorDao = new ProfessorDaoImpl();
 	}
 
-	public void pesquisarPorNome() {
-		sessao = HibernateUtil.abrirSessao();
-		try {
-			professores = professorDao.pesquisarPorNome(professor.getNome(), sessao);
-			modelprofessores = new ListDataModel<>(professores);
-			professor.setNome(null);
-		} catch (Exception e) {
-			System.out.println("Erro ao pesquisar Professor por nome" + e.getMessage());
-		}
-		sessao.close();
-	}
+
 
 	public void buscarCep() {
 		System.out.println("CEP AQUI" + endereco.getCep());
@@ -55,7 +45,7 @@ public class ProfessorControle {
 		endereco = webservice.pesquisarCep(endereco.getCep());
 		if (endereco.getLogradouro() == null) {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_WARN, null, "Não existe nenhum cep com esse valor"));
+					new FacesMessage(FacesMessage.SEVERITY_WARN, "Não existe nenhum cep com esse valor" , null));
 		}
 	}
 
@@ -78,11 +68,11 @@ public class ProfessorControle {
 			professorDao.salvarOuAlterar(professor, sessao);
 			professor = null;
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Professor Salvo com Sucesso"));
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Professor Salvo com Sucesso"  , null));
 			modelprofessores = null;
 		} catch (HibernateException e) {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Erro ao salvar o Professor"));
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao salvar o Professor" , null));
 		} finally {
 			sessao.close();
 		}
@@ -96,7 +86,7 @@ public class ProfessorControle {
 			professorDao.excluir(professor, sessao);
 			professor = null;
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Professor excluido com Sucesso"));
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Professor excluido com Sucesso" , null));
 			modelprofessores = null;
 		} catch (HibernateException e) {
 			FacesContext.getCurrentInstance().addMessage(null,
@@ -110,6 +100,18 @@ public class ProfessorControle {
 		professor = modelprofessores.getRowData();
 		endereco = professor.getEndereco();
 		aba = 0;
+	}
+	
+	public void pesquisarPorNome() {
+		sessao = HibernateUtil.abrirSessao();
+		try {
+			professores = professorDao.pesquisarPorNome(professor.getNome(), sessao);
+			modelprofessores = new ListDataModel<>(professores);
+			professor.setNome(null);
+		} catch (Exception e) {
+			System.out.println("Erro ao pesquisar Professor por nome" + e.getMessage());
+		}
+		sessao.close();
 	}
 
 	public Professor getProfessor() {

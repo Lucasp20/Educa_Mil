@@ -34,18 +34,6 @@ public class DisciplinaControle {
 		disciplinaDao = new DisciplinaDaoImpl();
 	}
 
-	public void pesquisarPorNome() {
-		sessao = HibernateUtil.abrirSessao();
-		try {
-			disciplinas = disciplinaDao.pesquisarPorNome(disciplina.getNome(), sessao);
-			modeldisciplinas = new ListDataModel<>(disciplinas);
-			disciplina.setNome(null);
-		} catch (Exception e) {
-			System.out.println("Erro ao pesquisar Disciplina por nome" + e.getMessage());
-		}
-		sessao.close();
-	}
-
 	public void salvar() {
 		sessao = HibernateUtil.abrirSessao();
 		try {
@@ -74,7 +62,7 @@ public class DisciplinaControle {
 			modeldisciplinas = null;
 		} catch (HibernateException e) {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao excluir Disciplina", ""));
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao excluir Disciplina", null));
 		} finally {
 			sessao.close();
 		}
@@ -83,6 +71,18 @@ public class DisciplinaControle {
 	public void alterar() {
 		disciplina = modeldisciplinas.getRowData();
 		aba = 0;
+	}
+	
+	public void pesquisarPorNome() {
+		sessao = HibernateUtil.abrirSessao();
+		try {
+			disciplinas = disciplinaDao.pesquisarPorNome(disciplina.getNome(), sessao);
+			modeldisciplinas = new ListDataModel<>(disciplinas);
+			disciplina.setNome(null);
+		} catch (Exception e) {
+			System.out.println("Erro ao pesquisar Disciplina por nome" + e.getMessage());
+		}
+		sessao.close();
 	}
 	
 	/* mudar aba para novo */

@@ -15,20 +15,21 @@
 
 				<p:tab title="Cadastros">
 					<h:form id="form_novo">
-					<div class="ui-fluid p-formgrid p-grid">
+						<div class="ui-fluid p-formgrid p-grid">
 
-						<div class="p-field p-col-12 p-md-4">
-							<p:outputLabel for="nome" value="Pelotão " />
-							<p:inputText id="nome" value="#{turmaC.turma.pelotao}"
-								required="true" placeholder="Digite o nome do pelotão"
-								requiredMessage="Nome do pelotão é Obrigatório!" />
-						</div>
-						<div class="p-field p-col-12 p-md-4">
-							<p:outputLabel for="ano" value="Ano Letivo " />
-							<p:inputText id="ano" value="#{turmaC.turma.ano}" required="true"
-								placeholder="Digite o ano letivo"
-								requiredMessage="Nome do pelotão é Obrigatório!" />
-						</div>
+							<div class="p-field p-col-12 p-md-4">
+								<p:outputLabel for="nome" value="Pelotão " />
+								<p:inputText id="nome" value="#{turmaC.turma.pelotao}"
+									required="true" placeholder="Digite o nome do pelotão"
+									requiredMessage="Nome do pelotão é Obrigatório!" />
+							</div>
+
+							<div class="p-field p-col-12 p-md-4">
+								<p:outputLabel for="ano" value="Ano Letivo " />
+								<p:inputText id="ano" value="#{turmaC.turma.ano}"
+									required="true" placeholder="Digite o ano letivo"
+									requiredMessage="Nome do pelotão é Obrigatório!" />
+							</div>
 						</div>
 
 						<!-- Botão salvar -->
@@ -72,13 +73,15 @@
 							<p:column headerText="Ação" exportable="false">
 								<p:commandButton icon="fa fa-pencil-square-o" title="Alterar"
 									process="@this" actionListener="#{turmaC.alterar}"
-									update="@form" styleClass="rounded-button ui-button-info ui-button-info ui-button-flat"
+									update="@form"
+									styleClass="rounded-button ui-button-info ui-button-info ui-button-flat"
 									oncomplete="#{turmaC.modelturmas}" />
 
 								<p:spacer width="5" />
 								<p:commandButton icon="pi pi-trash" title="Excluir"
 									process="@this" actionListener="#{turmaC.excluir}"
-									update="tabela" styleClass="rounded-button ui-button-danger ui-button-danger ui-button-flat">
+									update="tabela"
+									styleClass="rounded-button ui-button-danger ui-button-danger ui-button-flat">
 									<p:confirm header="Confirmação"
 										message="Tem certeza de que deseja a turma?" />
 								</p:commandButton>

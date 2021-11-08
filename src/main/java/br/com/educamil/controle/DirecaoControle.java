@@ -55,7 +55,7 @@ public class DirecaoControle {
 		endereco = webservice.pesquisarCep(endereco.getCep());
 		if (endereco.getLogradouro() == null) {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_WARN, null, "Não existe nenhum cep com esse valor"));
+					new FacesMessage(FacesMessage.SEVERITY_WARN, "Não existe nenhum cep com esse valor", null));
 		}
 	}
 
@@ -87,11 +87,11 @@ public class DirecaoControle {
 			direcaoDao.excluir(direcao, sessao);
 			direcao = null;
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Responsável excluido com Sucesso"));
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Responsável excluido com Sucesso" , null));
 			modeldiretores = null;
 		} catch (HibernateException e) {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao excluir Responsável", ""));
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao excluir Responsável", null));
 		} finally {
 			sessao.close();
 		}

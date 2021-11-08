@@ -7,16 +7,10 @@
 	xmlns:adm="http://github.com/adminfaces"
 	template="/WEB-INF/templates/layout.xhtml">
 
-	<h:outputStylesheet library="css" name="default.css" />
-	<h:outputStylesheet name="./css/cssLayout.css" />
-	<h:outputStylesheet library="css" name="primeflex.min.css" />
-
-
 	<ui:define name="content">
 		<p:panel header="Disciplinas">
 
 			<p:tabView id="tab_view" activeIndex="#{disciplinaC.aba}">
-			
 				<p:ajax event="tabChange" listener="#{disciplinaC.onTabChange}" />
 				<p:ajax event="tabClose" listener="#{disciplinaC.onTabClose}" />
 
@@ -30,7 +24,7 @@
 									value="#{disciplinaC.disciplina.nome}" required="true"
 									placeholder="Digite o nome da Disciplina"
 									requiredMessage="Disciplina é Obrigatória!" />
-									 <p:message	for="disciplina" />
+									
 							</div>
 
 							<div class="p-field p-col-12 p-md-4">
@@ -39,7 +33,7 @@
 									value="#{disciplinaC.disciplina.tipoEnsino}" required="true"
 									placeholder="Digite o Ensino"
 									requiredMessage="Ensino é Obrigatório!" />
-									<p:message for="ens" />
+									
 							</div>
 
 							<div class="p-field p-col-12 p-md-4">
@@ -48,7 +42,7 @@
 									value="#{disciplinaC.disciplina.cargaHoraria}" required="true"
 									placeholder="Carga Horária"
 									requiredMessage="Carga Horária é Obrigatório!" />
-									<p:message for="hr" />
+									
 							</div>
 						</div>
 

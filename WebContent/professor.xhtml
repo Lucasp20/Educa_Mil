@@ -4,12 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:adm="http://github.com/adminfaces"
 	template="/WEB-INF/templates/layout.xhtml">
-
-	<h:outputStylesheet library="css" name="default.css" />
-	<h:outputStylesheet name="./css/cssLayout.css" />
-	<h:outputStylesheet library="css" name="primeflex.min.css" />
 
 	<ui:define name="content">
 		<p:panel header="Professores">
@@ -20,7 +15,6 @@
 
 				<p:tab title="Cadastros">
 					<h:form id="form_novo">
-
 						<div class="ui-fluid p-formgrid p-grid">
 
 							<div class="p-field p-col-12 p-md-2">
@@ -30,7 +24,6 @@
 									requiredMessage="Matricula é Obrigatório!">
 									<p:keyFilter mask="mat" />
 								</p:inputText>
-								<span class="help-block"> <p:message for="mat" /></span>
 							</div>
 
 							<p:spacer width="16.80%" />
@@ -42,7 +35,6 @@
 								<p:inputText id="nome" value="#{professorC.professor.nome}"
 									required="true" placeholder="Digite o Nome Completo"
 									requiredMessage="Nome é Obrigatório!" />
-								<span class="help-block"> <p:message for="nome" /></span>
 							</div>
 
 							<div class="p-field p-col-12 p-md-4">
@@ -50,7 +42,6 @@
 								<p:inputMask id="cpf" value="#{professorC.professor.cpf}"
 									autocomplete="off" mask="999.999.999-99" required="true"
 									placeholder="Digite o CPF" requiredMessage="CPF é Obrigatório!" />
-								<span class="help-block"> <p:message for="cpf" /></span>
 							</div>
 
 							<div class="p-field p-col-12 p-md-4">
@@ -60,7 +51,7 @@
 									requiredMessage="RG é Obrigatório!">
 									<p:keyFilter mask="num" />
 								</p:inputText>
-								<span class="help-block"> <p:message for="rg" /></span>
+								
 							</div>
 
 							<div class="p-field p-col-12 p-md-4">
@@ -72,7 +63,7 @@
 									requiredMessage="Título de Eleitor é Obrigatório!">
 									<p:keyFilter mask="num" />
 								</p:inputText>
-								<span class="help-block"> <p:message for="titulo" /></span>
+								
 							</div>
 
 							<div class="p-field p-col-12 p-md-4">
@@ -83,7 +74,7 @@
 									requiredMessage="Data de Nascimento é Obrigatório!"
 									monthNavigator="true" yearNavigator="true"
 									yearRange="1900:2099" />
-								<span class="help-block"> <p:message for="nasc" /></span>
+								
 							</div>
 
 							<div class="p-field p-col-12 p-md-4">
@@ -92,7 +83,7 @@
 									mask="(99)99999-9999" required="true"
 									placeholder="Digite o Telefone"
 									requiredMessage="Telefone é obrigatório!" />
-								<span class="help-block"> <p:message for="tel" /></span>
+								
 							</div>
 
 							<div class="p-field p-col-12 p-md-4">
@@ -100,7 +91,7 @@
 								<p:inputText id="email" value="#{professorC.professor.email}"
 									required="true" placeholder="Digite o E-mail"
 									requiredMessage="E-mail é Obrigatório!" />
-								<span class="help-block"> <p:message for="email" /></span>
+								
 							</div>
 
 							<div class="p-field p-col-12 p-md-4">
@@ -108,7 +99,7 @@
 								<p:password id="senha" value="#{professorC.professor.senha}"
 									required="true" placeholder="Digite a senha"
 									requiredMessage="Senha é Obrigatório!" />
-								<span class="help-block"> <p:message for="senha" /></span>
+								
 							</div>
 							<p:spacer width="16.80%" />
 
@@ -121,7 +112,7 @@
 									<p:ajax listener="#{professorC.buscarCep}" event="blur"
 										update="rua, bairro, cidade, uf" />
 								</p:inputMask>
-								<span class="help-block"> <p:message for="cep" /></span>
+								
 							</div>
 
 
@@ -131,7 +122,7 @@
 								<p:inputText id="rua" value="#{professorC.endereco.logradouro}"
 									required="true" placeholder="Logradouro"
 									requiredMessage="Logradouro é Obrigatório!" />
-								<span class="help-block"> <p:message for="rua" /></span>
+								
 							</div>
 
 							<div class="p-field p-col-12 p-md-4">
@@ -141,7 +132,7 @@
 									requiredMessage="Número é Obrigatório!">
 									<p:keyFilter mask="num" />
 								</p:inputText>
-								<span class="help-block"> <p:message for="numero" /></span>
+								
 							</div>
 
 							<div class="p-field p-col-12 p-md-4 ">
@@ -149,7 +140,7 @@
 								<p:inputText id="bairro" value="#{professorC.endereco.bairro}"
 									required="true" placeholder="Bairro"
 									requiredMessage="Bairro é Obrigatório!" />
-								<span class="help-block"> <p:message for="bairro" /></span>
+								
 							</div>
 
 							<div class="p-field p-col-12 p-md-4 ">
@@ -157,7 +148,7 @@
 								<p:inputText id="cidade"
 									value="#{professorC.endereco.localidade}" required="true"
 									placeholder="Cidade" requiredMessage="Cidade é Obrigatório!" />
-								<span class="help-block"> <p:message for="cidade" /></span>
+								
 							</div>
 
 							<div class="p-field p-col-12 p-md-4 col-xs-3">
@@ -165,7 +156,7 @@
 								<p:inputText id="uf" value="#{professorC.endereco.uf}"
 									required="true" placeholder="Estado"
 									requiredMessage="Estado é Obrigatório!" />
-								<span class="help-block"> <p:message for="uf" /></span>
+								
 							</div>
 
 							<div class="p-field p-col-12 p-md-4">
@@ -174,7 +165,7 @@
 									value="#{professorC.endereco.complemento}" required="true"
 									placeholder="Complemento"
 									requiredMessage="Complemento é Obrigatório!" />
-								<span class="help-block"> <p:message for="complemento" /></span>
+								
 							</div>
 
 							<div class="p-field p-col-12 p-md-4">

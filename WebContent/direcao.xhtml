@@ -30,7 +30,6 @@
 								requiredMessage="Matricula é Obrigatório!">
 								<p:keyFilter mask="mat" />
 							</p:inputText>
-							<span class="help-block"> <p:message for="mat" /></span>
 						</div>
 						<p:spacer width="16.80%" />
 
@@ -42,7 +41,6 @@
 								<f:selectItem itemLabel="Diretor" itemValue="Diretor" />
 								<f:selectItem itemLabel="Coordenador" itemValue="Coordenador" />
 							</p:selectOneMenu>
-							<span class="help-block"> <p:message for="cargo" /></span>
 						</div>
 						<p:spacer width="16.80%" />
 
@@ -51,8 +49,6 @@
 							<p:inputText id="nome" value="#{direcaoC.direcao.nome}"
 								required="true" placeholder="Digite o Nome Completo"
 								requiredMessage="Nome é Obrigatório!" />
-							<span class="help-block"> <p:message for="nome" /></span>
-
 						</div>
 
 						<div class="p-field p-col-12 p-md-4">
@@ -60,7 +56,7 @@
 							<p:inputMask id="cpf" value="#{direcaoC.direcao.cpf}"
 								autocomplete="off" mask="999.999.999-99" required="true"
 								placeholder="Digite o CPF" requiredMessage="CPF é Obrigatório!" />
-							<span class="help-block"> <p:message for="cpf" /></span>
+							
 						</div>
 
 						<div class="p-field p-col-12 p-md-4">
@@ -70,7 +66,7 @@
 								requiredMessage="RG é Obrigatório!">
 								<p:keyFilter mask="num" />
 							</p:inputText>
-							<span class="help-block"> <p:message for="rg" /></span>
+							
 						</div>
 
 						<div class="p-field p-col-12 p-md-4">
@@ -81,7 +77,7 @@
 								requiredMessage="Título de Eleitor é Obrigatório!">
 								<p:keyFilter mask="num" />
 							</p:inputText>
-							<span class="help-block"> <p:message for="titulo" /></span>
+							
 						</div>
 
 						<div class="p-field p-col-12 p-md-4">
@@ -91,7 +87,7 @@
 								required="true" placeholder="Data De Nascimento"
 								requiredMessage="Data de Nascimento é Obrigatório!"
 								monthNavigator="true" yearNavigator="true" yearRange="1900:2099" />
-							<span class="help-block"> <p:message for="nasc" /></span>
+							
 						</div>
 
 						<div class="p-field p-col-12 p-md-4">
@@ -100,7 +96,7 @@
 								mask="(99)99999-9999" required="true"
 								placeholder="Digite o Telefone"
 								requiredMessage="Telefone é obrigatório!" />
-							<span class="help-block"> <p:message for="tel" /></span>
+							
 						</div>
 
 						<div class="p-field p-col-12 p-md-4">
@@ -108,7 +104,7 @@
 							<p:inputText id="email" value="#{direcaoC.direcao.email}"
 								required="true" placeholder="Digite o E-mail"
 								requiredMessage="E-mail é Obrigatório!" />
-							<span class="help-block"> <p:message for="email" /></span>
+							
 						</div>
 
 						<div class="p-field p-col-12 p-md-4">
@@ -116,7 +112,7 @@
 							<p:password id="senha" value="#{direcaoC.direcao.senha}"
 								required="true" placeholder="Digite a senha"
 								requiredMessage="Senha é Obrigatório!" />
-							<span class="help-block"> <p:message for="senha" /></span>
+							
 						</div>
 						<p:spacer width="16.80%" />
 
@@ -129,7 +125,7 @@
 								<p:ajax listener="#{direcaoC.buscarCep}" event="blur"
 									update="rua, bairro, cidade, uf" />
 							</p:inputMask>
-							<span class="help-block"> <p:message for="cep" /></span>
+							
 						</div>
 
 						<div class="p-field p-col-12 p-md-4">
@@ -137,7 +133,7 @@
 							<p:inputText id="rua" value="#{direcaoC.endereco.logradouro}"
 								required="true" placeholder="Logradouro"
 								requiredMessage="Logradouro é Obrigatório!" />
-							<span class="help-block"> <p:message for="rua" /></span>
+							
 						</div>
 
 						<div class="p-field p-col-12 p-md-4">
@@ -147,7 +143,7 @@
 								requiredMessage="Número é Obrigatório!">
 								<p:keyFilter mask="num" />
 							</p:inputText>
-							<span class="help-block"> <p:message for="numero" /></span>
+							
 						</div>
 
 						<div class="p-field p-col-12 p-md-4 ">
@@ -155,7 +151,7 @@
 							<p:inputText id="bairro" value="#{direcaoC.endereco.bairro}"
 								required="true" placeholder="Bairro"
 								requiredMessage="Bairro é Obrigatório!" />
-							<span class="help-block"> <p:message for="bairro" /></span>
+							
 						</div>
 
 						<div class="p-field p-col-12 p-md-4 ">
@@ -163,7 +159,7 @@
 							<p:inputText id="cidade" value="#{direcaoC.endereco.localidade}"
 								required="true" placeholder="Cidade"
 								requiredMessage="Cidade é Obrigatório!" />
-							<span class="help-block"> <p:message for="cidade" /></span>
+							
 						</div>
 
 						<div class="p-field p-col-12 p-md-4 col-xs-3">
@@ -171,7 +167,7 @@
 							<p:inputText id="uf" value="#{direcaoC.endereco.uf}"
 								required="true" placeholder="Estado"
 								requiredMessage="Estado é Obrigatório!" />
-							<span class="help-block"> <p:message for="uf" /></span>
+							
 						</div>
 
 						<div class="p-field p-col-12 p-md-4">
@@ -180,7 +176,7 @@
 								value="#{direcaoC.endereco.complemento}" required="true"
 								placeholder="Complemento"
 								requiredMessage="Complemento é Obrigatório!" />
-							<span class="help-block"> <p:message for="complemento" /></span>
+							
 						</div>
 
 						<div class="p-field p-col-12 p-md-4">
@@ -188,7 +184,6 @@
 							<p:inputText id="obs" value="#{direcaoC.endereco.observacao}"
 								placeholder="Observação" autocomplete="off" />
 						</div>
-
 					</div>
 
 					<!-- Botão salvar e Voltar -->
