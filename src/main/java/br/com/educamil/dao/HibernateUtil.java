@@ -25,6 +25,7 @@ public class HibernateUtil {
 			 cfg.addAnnotatedClass(Nota.class);
 			 cfg.addAnnotatedClass(Direcao.class);
 			 cfg.addAnnotatedClass(Perfil.class);
+			 cfg.addAnnotatedClass(Usuario.class);
                     
             cfg.configure("/br/com/educamil/dao/hibernate.cfg.xml");
             StandardServiceRegistryBuilder build = new StandardServiceRegistryBuilder().applySettings(cfg.getProperties());

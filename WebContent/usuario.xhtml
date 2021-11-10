@@ -39,64 +39,6 @@
 					</h:form>
 				</p:tab>
 				<p:separator />
-
-				<p:tab title="Relatório">
-					<h:form id="form_relatório">
-
-						<div class="p-field p-col-12 p-md-10">
-							<p:outputLabel for="usuario" value="Login" />
-							<p:spacer width="2%" />
-							<p:inputText id="usuario"
-								value="#{usuarioC.usuario.login}" placeholder="Pesquisar" />
-							<p:spacer width="2%" />
-							<p:commandButton value="Pesquisar" update="tabela usuario"
-								action="#{usuarioC.pesquisarPorLogin}"
-								styleClass="btn-primary" />
-						</div>
-
-						<p:commandButton value="PDF" icon="fa fa-file-pdf-o" ajax="false"
-							styleClass="p-mr-2 p-mb-2 ui-button-raised rounded-button ui-button-danger">
-							<p:dataExporter type="pdf" target="tabela" fileName="Usuários"
-								pageOnly="true" />
-						</p:commandButton>
-
-						<p:dataTable id="tabela" var="usuario"
-							value="#{usuarioC.modelUsuarios}" rows="10"
-							paginator="true" paginatorPosition="bottom"
-							currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
-							rowsPerPageTemplate="5,10,15,{ShowAll|'20'}">
-
-							<p:column headerText="Login" style="text-align:center">
-								<h:outputText value="#{usuario.nome}" />
-							</p:column>
-
-							<p:column headerText="Ação" exportable="false">
-								<p:commandButton icon="fa fa-pencil-square-o" title="Alterar"
-									process="@this" actionListener="#{usuarioC.alterar}"
-									update="@form"
-									styleClass="rounded-button ui-button-info ui-button-info ui-button-flat"
-									oncomplete="#{usuarioC.modelUsuarios}" />
-
-								<p:spacer width="5" />
-								<p:commandButton icon="pi pi-trash" title="Excluir"
-									process="@this" actionListener="#{usuarioC.excluir}"
-									update="tabela"
-									styleClass="rounded-button ui-button-danger ui-button-danger ui-button-flat">
-									<p:confirm header="Confirmação"
-										message="Tem certeza de que deseja excluir o usuário" />
-								</p:commandButton>
-							</p:column>
-						</p:dataTable>
-
-						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
-							responsive="true" width="350">
-							<p:commandButton value="Sim" type="button"
-								styleClass="ui-confirmdialog-yes ui-button-raised ui-button-success" />
-							<p:commandButton value="Não" type="button"
-								styleClass="ui-confirmdialog-no ui-button-raised ui-button-danger" />
-						</p:confirmDialog>
-					</h:form>
-				</p:tab>
 			</p:tabView>
 			<p:separator />
 		</p:panel>

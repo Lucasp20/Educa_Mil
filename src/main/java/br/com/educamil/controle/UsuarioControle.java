@@ -35,7 +35,6 @@ public class UsuarioControle {
 	private Usuario usuario;
 	private UsuarioDao usuarioDao;
 	private Session sessao;
-	private List<Usuario> usuarios;
 	private DataModel<Usuario> modelUsuarios;
 	private int aba;
 
@@ -45,9 +44,9 @@ public class UsuarioControle {
 
 	public void salvar() throws NoSuchAlgorithmException {
 		sessao = HibernateUtil.abrirSessao();
-		String hash = new String(this.getHash(usuario));
+		/* String hash = new String(this.getHash(usuario)); */
 		try {
-			usuario.setSenha(hash);
+			/* usuario.setSenha(hash); */
 			usuarioDao.salvarOuAlterar(usuario, sessao);
 			usuario = null;
 			FacesContext.getCurrentInstance().addMessage(null,
@@ -83,19 +82,6 @@ public class UsuarioControle {
 		aba = 0;
 	}
 
-	public void pesquisarPorLogin() {
-		sessao = HibernateUtil.abrirSessao();
-
-		try {
-			usuarios = usuarioDao.pesquisarPorLogin(usuario.getLogin(), sessao);
-			modelUsuarios = new ListDataModel<>(usuarios);
-			usuario.setLogin(null);
-		} catch (HibernateException e) {
-			System.out.println("Erro ao pesquisar usuários por login: " + e.getMessage());
-		} finally {
-			sessao.close();
-		}
-	}
 
 	/* Inicio mudar aba para novo */
 	public void onTabChange(TabChangeEvent event) {
