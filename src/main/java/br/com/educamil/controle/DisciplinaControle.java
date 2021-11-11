@@ -43,8 +43,8 @@ public class DisciplinaControle {
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Disciplina salva com Sucesso", null));
 			modeldisciplinas= null;
 		} catch (HibernateException e) {
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao salvar a Disciplina", null));
+			FacesMessage message = new FacesMessage("Erro ao excluir Disciplina");
+            FacesContext.getCurrentInstance().addMessage(null, message);
 		} finally {
 			sessao.close();
 		}

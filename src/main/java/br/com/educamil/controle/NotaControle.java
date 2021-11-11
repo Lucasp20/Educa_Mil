@@ -1,5 +1,6 @@
 package br.com.educamil.controle;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -8,10 +9,15 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+
+import br.com.educamil.dao.DisciplinaDao;
+import br.com.educamil.dao.DisciplinaDaoImpl;
 import br.com.educamil.dao.HibernateUtil;
 import br.com.educamil.dao.NotaDao;
 
 import br.com.educamil.dao.NotaDaoImpl;
+import br.com.educamil.dao.TurmaDao;
+import br.com.educamil.dao.TurmaDaoImpl;
 import br.com.educamil.entity.*;
 import javax.faces.model.SelectItem;
 import org.primefaces.event.TabChangeEvent;
@@ -46,122 +52,128 @@ public class NotaControle {
             nota = null;
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_INFO, "Notas Salvas com Sucesso", null));
-            //modelturmas = null;
+			modelNotas = null;
         } catch (HibernateException e) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao salvar as notas", null));
         } finally {
             sessao.close();
         }
-
     }
+    
+    public void excluir() {
+    	
+    }
+    
+    public void alterar() {
+
+	}
+    
+    public void comboBoxDisciplinas() {
+    	sessao = HibernateUtil.abrirSessao();
+    	DisciplinaDao disciplinaDao = new DisciplinaDaoImpl();
+    	try {
+			List<Disciplina> disciplinas = disciplinaDao.pesquisarTodos(sessao);
+			comboDisciplinas = new ArrayList<>();
+				for(Disciplina dis : disciplinas) {
+					comboDisciplinas.add(new SelectItem(dis.getId(), dis.getNome()));
+				}
+		} catch (Exception e) {
+			System.out.println("Erro ao carregar combobox Disciplina" + e.getMessage());
+		}finally {
+			sessao.close();
+		}
+    }
+    
+    public void comboBoxPelotao() {
+		sessao = HibernateUtil.abrirSessao();
+		TurmaDao turmaDao = new TurmaDaoImpl();
+		try {
+			List<Turma> turmas = turmaDao.pesqusiarTodos(sessao);
+			comboTurmas = new ArrayList<>();
+			for (Turma tur : turmas) {
+				comboTurmas.add(new SelectItem(tur.getId(), tur.getPelotao()));
+			}
+		} catch (Exception e) {
+			System.out.println("Erro ao carregar combobox pelotão" + e.getMessage());
+		} finally {
+			sessao.close();
+		}
+
+	}
+    
+    /* Inicio mudar aba para novo */
 
     public void onTabChange(TabChangeEvent event) {
-        if (event.getTab().getTitle().equals("Novo"))
-			;
+        if (event.getTab().getTitle().equals("Novo"));
+        
+        comboBoxDisciplinas();
+        comboBoxPelotao();
     }
 
     public void onTabClose(TabCloseEvent event) {
     }
+    
+    /* Fim mudar aba para novo */
+    
+    
+	public Nota getNota() {
+		if (nota == null) {
+			nota = new Nota();
+		}
+		return nota;
+	}
 
-    public Nota getNota() {
-        return nota;
-    }
+	public void setNota(Nota nota) {
+		this.nota = nota;
+	}
+    
+	public Disciplina getDisciplina() {
+		if (disciplina == null) {
+			disciplina = new Disciplina();
+		}
+		return disciplina;
+	}
+	
+	public Turma getTurma() {
+		if (turma == null) {
+			turma = new Turma();
+		}
+		return turma;
+	}
 
-    public void setNota(Nota nota) {
-        this.nota = nota;
-    }
+	public void setTurma(Turma turma) {
+		this.turma = turma;
+	}
+	
+	public List<Disciplina> getDisciplinas() {
+		return disciplinas;
+	}
 
-    public NotaDao getNotaDao() {
-        return notaDao;
-    }
+	public int getAba() {
+		return aba;
+	}
 
-    public void setNotaDao(NotaDao notaDao) {
-        this.notaDao = notaDao;
-    }
+	public List<SelectItem> getComboDisciplinas() {
+		return comboDisciplinas;
+	}
 
-    public Session getSessao() {
-        return sessao;
-    }
+	public List<SelectItem> getComboTurmas() {
+		return comboTurmas;
+	}
 
-    public void setSessao(Session sessao) {
-        this.sessao = sessao;
-    }
+	public DataModel<Nota> getModelNotas() {
+		return modelNotas;
+	}
 
-    public Disciplina getDisciplina() {
-        return disciplina;
-    }
+	public void setDisciplinas(List<Disciplina> disciplinas) {
+		this.disciplinas = disciplinas;
+	}
 
-    public void setDisciplina(Disciplina disciplina) {
-        this.disciplina = disciplina;
-    }
+	public void setDisciplina(Disciplina disciplina) {
+		this.disciplina = disciplina;
+	}   
 
-    public Turma getTurma() {
-        return turma;
-    }
-
-    public void setTurma(Turma turma) {
-        this.turma = turma;
-    }
-
-    public List<Nota> getNotas() {
-        return notas;
-    }
-
-    public void setNotas(List<Nota> notas) {
-        this.notas = notas;
-    }
-
-    public List<Disciplina> getDisciplinas() {
-        return disciplinas;
-    }
-
-    public void setDisciplinas(List<Disciplina> disciplinas) {
-        this.disciplinas = disciplinas;
-    }
-
-    public DataModel<Nota> getModelNotas() {
-        return modelNotas;
-    }
-
-    public void setModelNotas(DataModel<Nota> modelNotas) {
-        this.modelNotas = modelNotas;
-    }
-
-    public List<SelectItem> getComboDisciplinas() {
-        return comboDisciplinas;
-    }
-
-    public void setComboDisciplinas(List<SelectItem> comboDisciplinas) {
-        this.comboDisciplinas = comboDisciplinas;
-    }
-
-    public List<SelectItem> getComboTurmas() {
-        return comboTurmas;
-    }
-
-    public void setComboTurmas(List<SelectItem> comboTurmas) {
-        this.comboTurmas = comboTurmas;
-    }
-
-    public Aluno getAluno() {
-        return aluno;
-    }
-
-    public void setAluno(Aluno aluno) {
-        this.aluno = aluno;
-    }
-
-    public List<Aluno> getAlunos() {
-        return alunos;
-    }
-
-    public void setAlunos(List<Aluno> alunos) {
-        this.alunos = alunos;
-    }
-
-    public int getAba() {
-        return aba;
-    }
-
+	
+	
 }

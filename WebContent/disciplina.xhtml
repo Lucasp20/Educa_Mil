@@ -15,7 +15,10 @@
 				<p:ajax event="tabClose" listener="#{disciplinaC.onTabClose}" />
 
 				<p:tab title="Cadastros">
+				
+				
 					<h:form id="form_novo">
+					
 						<div class="ui-fluid p-formgrid p-grid">
 
 							<div class="p-field p-col-12 p-md-4">
@@ -42,7 +45,7 @@
 									requiredMessage="Carga Horária é Obrigatório!" />
 							</div>
 						</div>
-						<p:commandButton value="Salvar"
+						<p:commandButton value="Salvar" ajax="false"
 							actionListener="#{disciplinaC.salvar}" update="@form"
 							styleClass="btn-primary" icon="pi pi-save" />
 					</h:form>

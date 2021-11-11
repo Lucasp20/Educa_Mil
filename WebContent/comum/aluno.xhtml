@@ -48,6 +48,7 @@
 								<p:inputText id="nome" value="#{alunoC.aluno.nome}"
 									required="true" placeholder="Digite o Nome Completo"
 									requiredMessage="Nome é Obrigatório!" />
+
 							</div>
 
 							<div class="p-field p-col-12 p-md-4">
@@ -55,6 +56,7 @@
 								<p:inputMask id="cpf" value="#{alunoC.aluno.cpf}"
 									autocomplete="off" mask="999.999.999-99" required="true"
 									placeholder="Digite o CPF" requiredMessage="CPF é Obrigatório!" />
+
 							</div>
 
 							<div class="p-field p-col-12 p-md-4">
@@ -64,6 +66,7 @@
 									placeholder="Digite o RG" requiredMessage="RG é Obrigatório!">
 									<p:keyFilter mask="num" />
 								</p:inputText>
+
 							</div>
 
 							<div class="p-field p-col-12 p-md-4">
@@ -74,6 +77,7 @@
 									requiredMessage="Título de Eleitor é Obrigatório!">
 									<p:keyFilter mask="num" />
 								</p:inputText>
+
 							</div>
 
 							<div class="p-field p-col-12 p-md-4">
@@ -184,7 +188,7 @@
 
 						<!-- Botão salvar e Voltar -->
 						<p:commandButton value="Salvar" actionListener="#{alunoC.salvar}"
-							update="@form" styleClass="btn-primary" icon="pi pi-save"/>
+							update="@form" styleClass="btn-primary" icon="pi pi-save" />
 					</h:form>
 				</p:tab>
 				<p:separator />

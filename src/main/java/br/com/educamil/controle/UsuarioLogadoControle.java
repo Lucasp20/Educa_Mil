@@ -60,5 +60,15 @@ public class UsuarioLogadoControle {
     public void setUsuarioLogado(Usuario usuarioLogado) {
         this.usuarioLogado = usuarioLogado;
     }
+
+	public UsuarioDao getUsuarioDao() {
+		return usuarioDao;
+	}
+
+	public void setUsuarioDao(UsuarioDao usuarioDao) {
+		this.usuarioDao = usuarioDao;
+	}
+    
+    
   
 }

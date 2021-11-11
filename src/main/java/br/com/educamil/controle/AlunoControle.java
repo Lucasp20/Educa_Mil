@@ -88,7 +88,6 @@ public class AlunoControle {
 
 	public void pesquisarPorNome() {
 		sessao = HibernateUtil.abrirSessao();
-
 		try {
 			alunos = alunoDao.pesquisarPorNome(aluno.getNome(), sessao);
 			modelAlunos = new ListDataModel<>(alunos);

@@ -112,7 +112,18 @@ public class UsuarioControle {
 	public DataModel<Usuario> getModelUsuarios() {
 		return modelUsuarios;
 	}
+	
+	public UsuarioDao getUsuarioDao() {
+		return usuarioDao;
+	}
 
+	public void setUsuarioDao(UsuarioDao usuarioDao) {
+		this.usuarioDao = usuarioDao;
+	}
+
+	public void setModelUsuarios(DataModel<Usuario> modelUsuarios) {
+		this.modelUsuarios = modelUsuarios;
+	}
 
 	private String getHash(Usuario usuario) throws NoSuchAlgorithmException {
 		String senha = new String(usuario.getSenha());
