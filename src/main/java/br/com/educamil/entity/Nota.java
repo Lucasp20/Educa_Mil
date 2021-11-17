@@ -40,6 +40,9 @@ public class Nota implements Serializable {
 
     @Column(nullable = true)
     private double notaTres;
+    
+    @Column(nullable = true)
+    private double notaFinal;
 
     @ManyToOne
     @JoinColumn(name = "id_disciplina")
@@ -49,19 +52,25 @@ public class Nota implements Serializable {
     @JoinColumn(name="id_aluno")
     private Aluno aluno;
 
-    public Nota(double notaUm, double notaDois, double notaTres) {
-        super();
-        this.notaUm = notaUm;
-        this.notaDois = notaDois;
-        this.notaTres = notaTres;
-    }
+   
 
-    public Nota() {
-        super();
+    public Nota(double notaUm, double notaDois, double notaTres, double notaFinal) {
+		super();
+		this.notaUm = notaUm;
+		this.notaDois = notaDois;
+		this.notaTres = notaTres;
+		this.notaFinal = notaFinal;
+	}
 
-    }
+    
+    
+	public Nota() {
+		super();
+	} 	
 
-    public Long getId() {
+
+
+	public Long getId() {
         return id;
     }
 
@@ -93,7 +102,15 @@ public class Nota implements Serializable {
         this.notaTres = notaTres;
     }
 
-    public Disciplina getDisciplina() {
+    public double getNotaFinal() {
+		return notaFinal;
+	}
+
+	public void setNotaFinal(double notaFinal) {
+		this.notaFinal = notaFinal;
+	}
+
+	public Disciplina getDisciplina() {
         return disciplina;
     }
 

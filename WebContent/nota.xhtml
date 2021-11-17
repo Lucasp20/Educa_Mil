@@ -98,6 +98,18 @@
 											</f:facet>
 										</p:cellEditor>
 									</p:column>
+									<p:column headerText="Média">
+										<p:cellEditor>
+											<f:facet name="output">
+												<h:outputText value="#{notaC.nota.notaFinal}" />
+											</f:facet>
+											<f:facet name="input">
+												<p:inputText value="#{notaC.nota.notaFinal}"
+													style="width:100%" label="notaFinal" />
+											</f:facet>
+										</p:cellEditor>
+									</p:column>
+									
 								</p:dataTable>
 							</div>
 
