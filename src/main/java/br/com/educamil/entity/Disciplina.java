@@ -27,11 +27,13 @@ public class Disciplina implements Serializable {
     @OneToMany(mappedBy = "disciplina")
     private List<Nota> notas;
 
-	/*
-	 * @ManyToMany(mappedBy = "disciplina") private List<Turma> turmas;
-	 * 
-	 * @ManyToMany(mappedBy = "disciplina") private List<Professor> professores;
-	 */
+	
+    @ManyToOne
+    @JoinColumn(name="idTurma")
+    private Turma turma;
+    
+//	 * @ManyToMany(mappedBy = "disciplina") private List<Professor> professores;
+//	 */
        
     public Disciplina() {
         super();
@@ -128,5 +130,13 @@ public class Disciplina implements Serializable {
         }
         return true;
     }
+
+	public Turma getTurma() {
+		return turma;
+	}
+
+	public void setTurma(Turma turma) {
+		this.turma = turma;
+	}
 
 }

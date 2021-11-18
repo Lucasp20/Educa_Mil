@@ -116,6 +116,7 @@ public class NotaControle {
     
     /* Fim mudar aba para novo */
     
+      
     
 	public Nota getNota() {
 		if (nota == null) {
