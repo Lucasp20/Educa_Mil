@@ -41,6 +41,7 @@ public class AlunoControle {
 
 	public AlunoControle() {
 		alunoDao = new AlunoDaoImpl();
+		comboBoxPelotao();
 	}
 
 	public void salvar() throws NoSuchAlgorithmException {
@@ -52,11 +53,11 @@ public class AlunoControle {
 			alunoDao.salvarOuAlterar(aluno, sessao);
 			aluno = null;
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Aluno Salvo com Sucesso" , null));
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Aluno Salvo com Sucesso", null));
 			modelAlunos = null;
 		} catch (HibernateException e) {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao salvar o Aluno" , null));
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao salvar o Aluno", null));
 		} finally {
 			sessao.close();
 		}
@@ -69,7 +70,7 @@ public class AlunoControle {
 			alunoDao.excluir(aluno, sessao);
 			aluno = null;
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Aluno excluido com Sucesso" , null));
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Aluno excluido com Sucesso", null));
 			modelAlunos = null;
 		} catch (HibernateException e) {
 			FacesContext.getCurrentInstance().addMessage(null,
@@ -105,7 +106,7 @@ public class AlunoControle {
 		endereco = webservice.pesquisarCep(endereco.getCep());
 		if (endereco.getLogradouro() == null) {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_WARN, "Não existe nenhum cep com esse valor" , null));
+					new FacesMessage(FacesMessage.SEVERITY_WARN, "Não existe nenhum cep com esse valor", null));
 		}
 	}
 
@@ -126,17 +127,7 @@ public class AlunoControle {
 
 	}
 
-	/* Inicio mudar aba para novo */
-	public void onTabChange(TabChangeEvent event) {
-		if (event.getTab().getTitle().equals("Novo"));
-		
-		comboBoxPelotao();
-	}
 
-	public void onTabClose(TabCloseEvent event) {
-	}
-
-	/* Fim mudar aba para novo */
 
 	public Aluno getAluno() {
 		if (aluno == null) {
@@ -152,7 +143,6 @@ public class AlunoControle {
 	public int getAba() {
 		return aba;
 	}
-
 
 	public Endereco getEndereco() {
 		if (endereco == null) {
