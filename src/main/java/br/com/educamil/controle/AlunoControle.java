@@ -127,8 +127,6 @@ public class AlunoControle {
 
 	}
 
-
-
 	public Aluno getAluno() {
 		if (aluno == null) {
 			aluno = new Aluno();

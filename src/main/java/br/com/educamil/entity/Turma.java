@@ -23,9 +23,10 @@ public class Turma {
     @OneToMany(mappedBy = "turma")
     private List<Aluno> aluno;
     
-	/*
-	 * @ManyToMany(mappedBy = "turma") private List<Disciplina> Disciplinas;
-	 */
+	
+	@OneToMany() 
+	private List<Disciplina> Disciplinas;
+	
     
 	
     public Turma(String pelotao, String ano) {

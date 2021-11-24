@@ -43,6 +43,8 @@ public class NotaControle {
 
     public NotaControle() {
         notaDao = new NotaDaoImpl();
+        comboBoxDisciplinas();
+        comboBoxPelotao();
     }
 
     public void salvar() {
@@ -102,20 +104,8 @@ public class NotaControle {
 
 	}
     
-    /* Inicio mudar aba para novo */
-
-    public void onTabChange(TabChangeEvent event) {
-        if (event.getTab().getTitle().equals("Novo"));
-        
-        comboBoxDisciplinas();
-        comboBoxPelotao();
-    }
-
-    public void onTabClose(TabCloseEvent event) {
-    }
-    
-    /* Fim mudar aba para novo */
-    
+     
+      
     
 	public Nota getNota() {
 		if (nota == null) {

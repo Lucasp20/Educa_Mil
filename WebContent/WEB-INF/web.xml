@@ -11,7 +11,6 @@
         <param-value>Development</param-value>
     </context-param>
     
-    	
     <context-param>
         <param-name>javax.faces.FACELETS_REFRESH_PERIOD</param-name>
         <param-value>0</param-value>
@@ -65,7 +64,7 @@
     <!-- Fim Configurações SPRING SECURITY -->
    
     <welcome-file-list>
-        <welcome-file>admin/index.xhtml</welcome-file>
+        <welcome-file>comum/index.xhtml</welcome-file>
     </welcome-file-list>
     
 </web-app>

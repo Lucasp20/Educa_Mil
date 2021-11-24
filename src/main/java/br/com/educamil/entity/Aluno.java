@@ -22,6 +22,8 @@ public class Aluno extends Pessoa {
 
     @OneToMany(mappedBy = "aluno")
     private List<Nota> notas;
+    
+    
 
     public Aluno(String nomeMae, String nomePai, Turma turma) {
         super();

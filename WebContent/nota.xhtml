@@ -15,113 +15,117 @@
 		<p:panel header="Notas">
 
 			<p:tabView id="tab_view" activeIndex="#{notaC.aba}">
-				<p:ajax event="tabChange" listener="#{notaC.onTabChange}" />
-				<p:ajax event="tabClose" listener="#{notaC.onTabClose}" />
-
+		
 				<p:tab title="Cadastros">
 					<h:form id="form_novo">
-						
-						<div class="ui-fluid p-formgrid p-grid">
-						
-							<div class="p-field p-col-12 p-md-4">
+
+						<div class="ui-fluid p-formgrid p-grid">							
+
+						<div class="p-field p-col-12 p-md-4">
+								<p:outputLabel for="turma" value="Pelotão" />
+								<p:selectOneMenu id="turma" value="#{notaC.turma.id}"
+									dynamic="true" filter="true" filterMatchMode="startsWith" >
+									<f:selectItem itemLabel="Escolha o pelotão" itemValue="" />
+									<f:selectItems value="#{notaC.comboTurmas}" />
+								</p:selectOneMenu>
+							</div>
+						</div>
+												
+						<div class="p-field p-col-12 p-md-4">
 								<p:outputLabel for="disciplina" value="Disciplina" />
 								<p:selectOneMenu id="disciplina" value="#{notaC.disciplina.id}"
 									dynamic="true" filter="true" filterMatchMode="startsWith">
-									
 									<f:selectItem itemLabel="Escolha a disciplina" itemValue="" />
 									<f:selectItems value="#{notaC.comboDisciplinas}" />
 								</p:selectOneMenu>
-							</div>		
-
-								<div class="p-field p-col-12 p-md-4">
-									<p:outputLabel for="turma" value="Pelotão" />
-									<p:selectOneMenu id="turma" value="#{notaC.turma.id}"
-										dynamic="true" filter="true" filterMatchMode="startsWith">
-										
-										<f:selectItem itemLabel="Escolha o pelotão" itemValue="" />
-										<f:selectItems value="#{notaC.comboTurmas}" />
-									</p:selectOneMenu>
-								</div>
 							</div>
 
-							<!--Aqui começa a tabela de alunos-->
-							<div class="card">
-								<h5>Cadastro de notas de alunos</h5>
-								<p:dataTable id="notaAluno" var="notasAlunos"
-									value="#{notaC.modelNotas}" editable="true" editMode="cell"
-									widgetVar="cellProducts">
+						<div class="p-field p-col-12 p-md-10">
+							<p:commandButton value="Pesquisar" update="tabela"
+								action="#{alunoC.pesquisarPorNome}" styleClass="btn-primary" />
+						</div>
 
-									<p:ajax event="cellEdit" listener="#{dtEditView.onCellEdit}" />
 
-									<p:column headerText="Nome">
+						<!--Aqui começa a tabela de alunos-->
+						<div class="card">
+							<h5>Cadastro de notas de alunos</h5>
+							<p:dataTable id="tabela" var="notasAlunos"
+								value="#{notaC.modelNotas}" editable="true" editMode="cell"
+								widgetVar="cellProducts">
+
+								<p:ajax event="cellEdit" listener="#{dtEditView.onCellEdit}" />
+
+								<p:column headerText="Nome">
+									<f:facet name="output">
+										<h:outputText value="#{notaC.nota.aluno.nome}" />
+									</f:facet>
+									<f:facet name="input">
+										<p:inputText id="nomeAluno" value="#{notaC.nota.aluno.nome}"
+											style="width:100%" />
+									</f:facet>
+								</p:column>
+
+								<p:column headerText="Nota 1">
+									<p:cellEditor>
 										<f:facet name="output">
-											<h:outputText value="#{notaC.aluno.nome}" />
+											<h:outputText value="#{notaC.nota.notaUm}" />
 										</f:facet>
 										<f:facet name="input">
-											<p:inputText id="nomeAluno" value="#{notaC.aluno.nome}"
-												style="width:100%" />
+											<p:inputText value="#{notaC.nota.notaUm}" style="width:100%"
+												label="notaUm" />
 										</f:facet>
-									</p:column>
+									</p:cellEditor>
+								</p:column>
 
-									<p:column headerText="Nota 1">
-										<p:cellEditor>
-											<f:facet name="output">
-												<h:outputText value="#{notaC.nota.notaUm}" />
-											</f:facet>
-											<f:facet name="input">
-												<p:inputText value="#{notaC.nota.notaUm}" style="width:100%"
-													label="notaUm" />
-											</f:facet>
-										</p:cellEditor>
-									</p:column>
+								<p:column headerText="Nota 2">
+									<p:cellEditor>
+										<f:facet name="output">
+											<h:outputText value="#{notaC.nota.notaDois}" />
+										</f:facet>
+										<f:facet name="input">
+											<p:inputText value="#{notaC.nota.notaDois}"
+												style="width:100%" label="notaDois" />
+										</f:facet>
+									</p:cellEditor>
+								</p:column>
 
-									<p:column headerText="Nota 2">
-										<p:cellEditor>
-											<f:facet name="output">
-												<h:outputText value="#{notaC.nota.notaDois}" />
-											</f:facet>
-											<f:facet name="input">
-												<p:inputText value="#{notaC.nota.notaDois}"
-													style="width:100%" label="notaDois" />
-											</f:facet>
-										</p:cellEditor>
-									</p:column>
+								<p:column headerText="Nota 3">
+									<p:cellEditor>
+										<f:facet name="output">
+											<h:outputText value="#{notaC.nota.notaTres}" />
+										</f:facet>
+										<f:facet name="input">
+											<p:inputText value="#{notaC.nota.notaTres}"
+												style="width:100%" label="notaTres" />
+										</f:facet>
+									</p:cellEditor>
+								</p:column>
+								<p:column headerText="Média">
+									<p:cellEditor>
+										<f:facet name="output">
+											<h:outputText value="#{notaC.nota.notaFinal}" />
+										</f:facet>
+										<f:facet name="input">
+											<p:inputText value="#{notaC.nota.notaFinal}"
+												style="width:100%" label="notaFinal" />
+										</f:facet>
+									</p:cellEditor>
+								</p:column>
 
-									<p:column headerText="Nota 3">
-										<p:cellEditor>
-											<f:facet name="output">
-												<h:outputText value="#{notaC.nota.notaTres}" />
-											</f:facet>
-											<f:facet name="input">
-												<p:inputText value="#{notaC.nota.notaTres}"
-													style="width:100%" label="notaTres" />
-											</f:facet>
-										</p:cellEditor>
-									</p:column>
-									<p:column headerText="Média">
-										<p:cellEditor>
-											<f:facet name="output">
-												<h:outputText value="#{notaC.nota.notaFinal}" />
-											</f:facet>
-											<f:facet name="input">
-												<p:inputText value="#{notaC.nota.notaFinal}"
-													style="width:100%" label="notaFinal" />
-											</f:facet>
-										</p:cellEditor>
-									</p:column>
-									
-								</p:dataTable>
-							</div>
+							</p:dataTable>
+						</div>
 
 						<p:separator />
-
+						
 						
 						<!-- Botão salvar -->
 						<p:commandButton value="Salvar" actionListener="#{notaC.salvar}"
 							update="@form" styleClass="btn-primary" icon="pi pi-save" />
 					</h:form>
-				</p:tab>		
+				</p:tab>
+				
+				
 			</p:tabView>
-			</p:panel>		
+		</p:panel>
 	</ui:define>
 </ui:composition>

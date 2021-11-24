@@ -26,18 +26,17 @@
 
         <header class="aw-topbar" style="margin-bottom: 5px;">
             <h:graphicImage library="senac" name="images/EducaMil.png" />
+            <h:outputText value="#{usuarioLogadoC.usuarioLogado.login}" style="margin-left: 35%"/> 
             <a href="#" class="aw-toggle js-toggle" ><i class="fa fa-bars"></i></a>
-            
         </header>
-
-        <aside class="aw-sidebar  js-sidebar">
+        
+        <aside class="aw-sidebar js-sidebar">
             <ui:include src="menu.xhtml" />
         </aside>
         
         <div id="content" class="aw-content js-content p-mt-10" >
         
        <!--  <p:growl id="messages" showDetail="true"/> -->
-        	
         	<p:messages id="msg" showSummary="true" closable="true">
 				<p:autoUpdate />
 			</p:messages>
@@ -51,13 +50,10 @@
 					<h:graphicImage library="senac" name="images/loadingAzul.gif" />
 				</div>
 			</p:dialog>
-
         </div>
 
         <section class="aw-content  js-content">
             <ui:insert name="content" />
         </section>
-
     </h:body>
-
 </html>
