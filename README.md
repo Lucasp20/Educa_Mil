@@ -1,4 +1,4 @@
-# Educa_Mil - Projeto Final (TCS - SENAC-2021)
+# Projeto Final (TCS - SENAC-2021)
 
 ### Educamil
   
@@ -6,9 +6,8 @@
  
 ### Tecnologias
   
-  - Utilizamos a linguagem JAVA e também nos baseamos na arquitetura MVC. 
-  - Para a plicação WEB, utilizamos JavaServer Faces (JSF), também utilizamos o template do primefaces com responsividade, assim deixando o sistema com uma funcionalidade para diversos dispositivos (Computadores, Tablet e Mobile)
-  
-  
+  - Utilizamos a linguagem JAVA e também nos baseamos na arquitetura MVC;
+  - Para a plicação WEB, utilizamos JavaServer Faces (JSF), também utilizamos o template do primefaces com responsividade, assim deixando o sistema com uma funcionalidade para diversos dispositivos (Computadores, Tablet e Mobile);
+  - Para guardar os dados utilizamos o banco de dados MySQL.
   
   
