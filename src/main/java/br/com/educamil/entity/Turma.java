@@ -22,10 +22,19 @@ public class Turma {
     
     @OneToMany(mappedBy = "turma")
     private List<Aluno> aluno;
+<<<<<<< HEAD
     
 	@OneToMany() 
 	private List<Disciplina> Disciplinas;
 		
+=======
+    	
+	@OneToMany(mappedBy = "turma") 
+	private List<Disciplina> disciplinas;
+	
+    
+	
+>>>>>>> branch 'main' of https://github.com/Lucasp20/Educa_Mil.git
     public Turma(String pelotao, String ano) {
         super();
         this.pelotao = pelotao;
@@ -70,13 +79,6 @@ public class Turma {
 		this.aluno = aluno;
 	}
 	
-	/*
-	 * public List<Disciplina> getDisciplinas() { return Disciplinas; }
-	 * 
-	 * public void setDisciplinas(List<Disciplina> disciplinas) { Disciplinas =
-	 * disciplinas; }
-	 */
-
 	@Override
     public int hashCode() {
         int hash = 7;
@@ -101,6 +103,14 @@ public class Turma {
         }
         return true;
     }
+
+	public List<Disciplina> getDisciplinas() {
+		return disciplinas;
+	}
+
+	public void setDisciplinas(List<Disciplina> disciplinas) {
+		this.disciplinas = disciplinas;
+	}
 
     
 }

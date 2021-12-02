@@ -31,5 +31,12 @@ public class DisciplinaDaoImpl extends BaseDaoImpl<Disciplina, Long> implements 
 		return consulta.list();
 	}
 
+	@Override
+	public Disciplina pesquisarPorNomePelotao(String turma, String disciplina, String ano, Session sessao) throws HibernateException {
+	Query consulta = sessao.createQuery("from Disciplina d join fetch d.notas n where d.turma.pelotao = :pelotao AND d.turma.ano = :ano");
+	consulta.setParameter("pelotao", turma);
+	consulta.setParameter("ano", ano);
+	return (Disciplina) consulta.uniqueResult();
+	}
 	
 }

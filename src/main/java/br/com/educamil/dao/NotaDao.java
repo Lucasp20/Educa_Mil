@@ -10,5 +10,4 @@ public interface NotaDao extends BaseDao<Nota, Long>{
 
 	List<Disciplina> pesquisarPorNome(String nome, Session sessao) throws HibernateException;
         
-	List<Turma> pesquisarPorPelotaoEDisciplina(String turma, String disciplina, Session sessao) throws HibernateException;
 }

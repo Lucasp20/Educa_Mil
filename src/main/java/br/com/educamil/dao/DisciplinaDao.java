@@ -9,4 +9,6 @@ public interface DisciplinaDao extends BaseDao<Disciplina, Long>{
 	List<Disciplina> pesquisarPorNome(String nome, Session sessao) throws HibernateException;
 	
 	List<Disciplina> pesquisarTodos(Session sessao) throws HibernateException;
+
+	Disciplina pesquisarPorNomePelotao(String turma, String disciplina, String ano, Session sessao) throws HibernateException;
 }
