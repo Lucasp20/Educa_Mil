@@ -19,7 +19,7 @@
         <authentication-provider>
             <jdbc-user-service data-source-ref="dataSource"
                users-by-username-query="SELECT login, senha, 'true' as enable FROM usuario WHERE login = ?"
-               authorities-by-username-query="SELECT login, tipo FROM perfil p join usuario u on p.id = u.idPerfil WHERE login = ?"/>
+               authorities-by-username-query="SELECT login, tipo FROM perfil p join usuario u on p.id = u.id_Perfil WHERE login = ?"/>
         </authentication-provider>
     </authentication-manager>
  
@@ -28,7 +28,7 @@
         <b:property name="url" value="jdbc:mysql://localhost:3306/educamil?autoReconnect=true&amp;useTimezone=true&amp;serverTimezone=America/Sao_Paulo&amp;zeroDateTimeBehavior=convertToNull" />  
         <b:property name="driverClassName" value="com.mysql.jdbc.Driver" />
         <b:property name="username" value="root" />
-        <b:property name="password" value="1107" />
+        <b:property name="password" value="admin" />
     </b:bean>
  
 </b:beans>

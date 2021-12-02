@@ -33,8 +33,6 @@ public class TurmaControle {
 		turmaDao = new TurmaDaoImpl();
 	}
 
-
-
 	public void salvar() {
 		sessao = HibernateUtil.abrirSessao();
 		try {
@@ -97,8 +95,6 @@ public class TurmaControle {
 
 	/* fim mudar aba para novo */
 
-	
-	
 	
 	public Turma getTurma() {
 		if (turma == null) {

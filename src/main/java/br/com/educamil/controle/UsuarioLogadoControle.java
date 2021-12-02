@@ -39,11 +39,7 @@ public class UsuarioLogadoControle {
         }
         pesquisarUsuario();
     }
-    
-    public static Usuario getUserConected(){
-        return usuarioLogado;
-    }
-    
+      
     private void pesquisarUsuario() {
         sessao = HibernateUtil.abrirSessao();
         try {

@@ -7,6 +7,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.*;
 import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
@@ -20,8 +22,6 @@ import br.com.educamil.dao.TurmaDao;
 import br.com.educamil.dao.TurmaDaoImpl;
 import br.com.educamil.entity.*;
 import javax.faces.model.SelectItem;
-import org.primefaces.event.TabChangeEvent;
-import org.primefaces.event.TabCloseEvent;
 
 @ManagedBean(name = "notaC")
 @ViewScoped
@@ -78,7 +78,7 @@ public class NotaControle {
 			List<Disciplina> disciplinas = disciplinaDao.pesquisarTodos(sessao);
 			comboDisciplinas = new ArrayList<>();
 				for(Disciplina dis : disciplinas) {
-					comboDisciplinas.add(new SelectItem(dis.getId(), dis.getNome()));
+					comboDisciplinas.add(new SelectItem(dis.getNome(), dis.getNome()));
 				}
 		} catch (Exception e) {
 			System.out.println("Erro ao carregar combobox Disciplina" + e.getMessage());
@@ -94,7 +94,7 @@ public class NotaControle {
 			List<Turma> turmas = turmaDao.pesqusiarTodos(sessao);
 			comboTurmas = new ArrayList<>();
 			for (Turma tur : turmas) {
-				comboTurmas.add(new SelectItem(tur.getId(), tur.getPelotao()));
+				comboTurmas.add(new SelectItem(tur.getPelotao(), tur.getPelotao() + " - " + tur.getAno() ));
 			}
 		} catch (Exception e) {
 			System.out.println("Erro ao carregar combobox pelotão" + e.getMessage());
@@ -104,7 +104,21 @@ public class NotaControle {
 
 	}
     
-     
+    public void pesquisarAlunoPelotao() {
+		sessao = HibernateUtil.abrirSessao();
+		DisciplinaDao disciplinaDao = new DisciplinaDaoImpl();
+		try {
+			disciplina = disciplinaDao.pesquisarPorNomePelotao(turma.getPelotao(), disciplina.getNome(), "2021", sessao); 
+			modelNotas = new ListDataModel<Nota>(disciplina.getNotas());
+			for(Nota nota: disciplina.getNotas()) {
+				System.out.println(nota.getNotaUm() + "  " + nota.getAluno().getNome() + "  "  );
+				}
+		} catch (HibernateException e) {
+			System.out.println("Erro ao pesquisar alunos por nome: " + e.getMessage());
+		} finally {
+			sessao.close();
+		}
+	}
       
     
 	public Nota getNota() {

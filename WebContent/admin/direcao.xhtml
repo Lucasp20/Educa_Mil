@@ -76,9 +76,8 @@
 								requiredMessage="Título de Eleitor é Obrigatório!">
 								<p:keyFilter mask="num" />
 							</p:inputText>
-							
 						</div>
-
+						
 						<div class="p-field p-col-12 p-md-4">
 							<p:outputLabel for="nasc" value="Data de Nascimento " />
 							<p:datePicker id="nasc" autocomplete="off"
@@ -86,7 +85,6 @@
 								required="true" placeholder="Data De Nascimento"
 								requiredMessage="Data de Nascimento é Obrigatório!"
 								monthNavigator="true" yearNavigator="true" yearRange="1900:2099" />
-							
 						</div>
 
 						<div class="p-field p-col-12 p-md-4">
@@ -95,7 +93,6 @@
 								mask="(99)99999-9999" required="true"
 								placeholder="Digite o Telefone"
 								requiredMessage="Telefone é obrigatório!" />
-							
 						</div>
 
 						<div class="p-field p-col-12 p-md-4">
@@ -109,7 +106,6 @@
 						<p:spacer width="16.80%" />
 						<p:spacer width="16.80%" />
 
-
 						<div class="p-field p-col-12 p-md-4">
 							<p:outputLabel for="cep" value="CEP" />
 							<p:inputMask id="cep" value="#{direcaoC.endereco.cep}"
@@ -119,7 +115,6 @@
 								<p:ajax listener="#{direcaoC.buscarCep}" event="blur"
 									update="rua, bairro, cidade, uf" />
 							</p:inputMask>
-							
 						</div>
 
 						<div class="p-field p-col-12 p-md-4">
@@ -129,7 +124,6 @@
 								requiredMessage="Logradouro é Obrigatório!" />
 							
 						</div>
-
 						<div class="p-field p-col-12 p-md-4">
 							<p:outputLabel for="numero" value="Número" />
 							<p:inputText id="numero" value="#{direcaoC.endereco.numero}"
@@ -139,7 +133,6 @@
 							</p:inputText>
 							
 						</div>
-
 						<div class="p-field p-col-12 p-md-4 ">
 							<p:outputLabel for="bairro" value="Bairro" />
 							<p:inputText id="bairro" value="#{direcaoC.endereco.bairro}"
@@ -147,7 +140,6 @@
 								requiredMessage="Bairro é Obrigatório!" />
 							
 						</div>
-
 						<div class="p-field p-col-12 p-md-4 ">
 							<p:outputLabel for="cidade" value="Cidade" />
 							<p:inputText id="cidade" value="#{direcaoC.endereco.localidade}"
@@ -155,7 +147,6 @@
 								requiredMessage="Cidade é Obrigatório!" />
 							
 						</div>
-
 						<div class="p-field p-col-12 p-md-4 col-xs-3">
 							<p:outputLabel for="uf" value="Estado" />
 							<p:inputText id="uf" value="#{direcaoC.endereco.uf}"
@@ -163,7 +154,6 @@
 								requiredMessage="Estado é Obrigatório!" />
 							
 						</div>
-
 						<div class="p-field p-col-12 p-md-4">
 							<p:outputLabel for="complemento" value="Complemento" />
 							<p:inputText id="complemento" autocomplete="off"
@@ -172,14 +162,12 @@
 								requiredMessage="Complemento é Obrigatório!" />
 							
 						</div>
-
 						<div class="p-field p-col-12 p-md-4">
 							<p:outputLabel for="obs" value="Observação" />
 							<p:inputText id="obs" value="#{direcaoC.endereco.observacao}"
 								placeholder="Observação" autocomplete="off" />
 						</div>
 					</div>
-
 					<!-- Botão salvar e Voltar -->
 					<p:commandButton value="Salvar" actionListener="#{direcaoC.salvar}"
 						update="@form" styleClass="btn-primary" icon="pi pi-save" />
@@ -187,8 +175,6 @@
 				</h:form>
 			</p:tab>
 			<p:separator />
-
-
 			<p:tab title="Relatório">
 				<h:form id="form_relatório">
 

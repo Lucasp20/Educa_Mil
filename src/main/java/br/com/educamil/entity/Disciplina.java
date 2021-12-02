@@ -26,14 +26,11 @@ public class Disciplina implements Serializable {
 
     @OneToMany(mappedBy = "disciplina")
     private List<Nota> notas;
-
 	
     @ManyToOne
     @JoinColumn(name="idTurma")
     private Turma turma;
     
-//	 * @ManyToMany(mappedBy = "disciplina") private List<Professor> professores;
-//	 */
        
     public Disciplina() {
         super();
@@ -80,26 +77,6 @@ public class Disciplina implements Serializable {
         this.cargaHoraria = cargaHoraria;
     }
 
-    public List<Nota> getNotas() {
-        return notas;
-    }
-
-    public void setNotas(List<Nota> notas) {
-        this.notas = notas;
-    }
-
-	/*
-	 * public List<Professor> getProfessores() { return professores; }
-	 * 
-	 * public void setProfessores(List<Professor> professores) { this.professores =
-	 * professores; }
-	 * 
-	 * 
-	 * 
-	 * public List<Turma> getTurmas() { return turmas; }
-	 * 
-	 * public void setTurmas(List<Turma> turmas) { this.turmas = turmas; }
-	 */
 
 	@Override
     public int hashCode() {
@@ -138,5 +115,14 @@ public class Disciplina implements Serializable {
 	public void setTurma(Turma turma) {
 		this.turma = turma;
 	}
+
+	public List<Nota> getNotas() {
+		return notas;
+	}
+
+	public void setNotas(List<Nota> notas) {
+		this.notas = notas;
+	}
+
 
 }

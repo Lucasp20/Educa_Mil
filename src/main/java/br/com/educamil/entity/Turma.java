@@ -22,10 +22,9 @@ public class Turma {
     
     @OneToMany(mappedBy = "turma")
     private List<Aluno> aluno;
-    
-	
-	@OneToMany() 
-	private List<Disciplina> Disciplinas;
+    	
+	@OneToMany(mappedBy = "turma") 
+	private List<Disciplina> disciplinas;
 	
     
 	
@@ -73,13 +72,6 @@ public class Turma {
 		this.aluno = aluno;
 	}
 	
-	/*
-	 * public List<Disciplina> getDisciplinas() { return Disciplinas; }
-	 * 
-	 * public void setDisciplinas(List<Disciplina> disciplinas) { Disciplinas =
-	 * disciplinas; }
-	 */
-
 	@Override
     public int hashCode() {
         int hash = 7;
@@ -104,6 +96,14 @@ public class Turma {
         }
         return true;
     }
+
+	public List<Disciplina> getDisciplinas() {
+		return disciplinas;
+	}
+
+	public void setDisciplinas(List<Disciplina> disciplinas) {
+		this.disciplinas = disciplinas;
+	}
 
     
 }

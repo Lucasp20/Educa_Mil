@@ -11,14 +11,10 @@
 		<p:panel header="Disciplinas">
 
 			<p:tabView id="tab_view" activeIndex="#{disciplinaC.aba}">
-				<p:ajax event="tabChange" listener="#{disciplinaC.onTabChange}" />
-				<p:ajax event="tabClose" listener="#{disciplinaC.onTabClose}" />
 
 				<p:tab title="Cadastros">
-				
-				
 					<h:form id="form_novo">
-					
+
 						<div class="ui-fluid p-formgrid p-grid">
 
 							<div class="p-field p-col-12 p-md-4">
@@ -28,7 +24,7 @@
 									placeholder="Digite o nome da Disciplina"
 									requiredMessage="Disciplina é Obrigatória!" />
 							</div>
-
+							
 							<div class="p-field p-col-12 p-md-4">
 								<p:outputLabel for="ens" value="Ensino" />
 								<p:inputText id="ens"
@@ -44,6 +40,18 @@
 									placeholder="Carga Horária"
 									requiredMessage="Carga Horária é Obrigatório!" />
 							</div>
+
+							<div class="p-field p-col-12 p-md-4">
+								<p:outputLabel for="turma" value="Pelotão" />
+								<p:selectOneMenu id="turma" value="#{disciplinaC.turma.id}"
+									required="true" requiredMessage="Pelotão é Obrigatório!"
+									filter="true" filterMatchMode="startsWith">
+
+									<f:selectItem itemLabel="Escolha um pelotão" itemValue="" />
+									<f:selectItems value="#{disciplinaC.comboTurmas}" />
+								</p:selectOneMenu>
+							</div>
+
 						</div>
 						<p:commandButton value="Salvar" ajax="false"
 							actionListener="#{disciplinaC.salvar}" update="@form"
