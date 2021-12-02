@@ -84,17 +84,6 @@ public class TurmaControle {
 		}
 		sessao.close();
 	}
-
-	/* mudar aba para novo */
-	public void onTabChange(TabChangeEvent event) {
-		if (event.getTab().getTitle().equals("Novo"));
-	}
-
-	public void onTabClose(TabCloseEvent event) {
-	}
-
-	/* fim mudar aba para novo */
-
 	
 	public Turma getTurma() {
 		if (turma == null) {

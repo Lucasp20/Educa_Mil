@@ -23,12 +23,9 @@ public class Turma {
     @OneToMany(mappedBy = "turma")
     private List<Aluno> aluno;
     
-	
 	@OneToMany() 
 	private List<Disciplina> Disciplinas;
-	
-    
-	
+		
     public Turma(String pelotao, String ano) {
         super();
         this.pelotao = pelotao;

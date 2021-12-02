@@ -10,6 +10,7 @@
     <http auto-config="false" use-expressions="true" access-denied-page="/login.xhtml?negado=true" >
         <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>        
         <intercept-url pattern="/comum/**" access="hasAnyRole('ROLE_ADMIN, ROLE_COMUM')"/>
+        <intercept-url pattern="/prof/**" access="hasAnyRole('ROLE_ADMIN, ROLE_PROF')"/>
         <form-login login-page="/login.xhtml" authentication-failure-url="/login.xhtml?erro=true"/>
         <intercept-url pattern="/resources/**" access="permitAll"/>
         <logout invalidate-session="true" logout-success-url="/login.xhtml" logout-url="/logout" delete-cookies="JSESSIONID"/>

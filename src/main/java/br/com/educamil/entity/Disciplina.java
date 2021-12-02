@@ -26,12 +26,10 @@ public class Disciplina implements Serializable {
 
     @OneToMany(mappedBy = "disciplina")
     private List<Nota> notas;
-
 	
     @ManyToOne
     @JoinColumn(name="idTurma")
     private Turma turma;
-    
        
     public Disciplina() {
         super();

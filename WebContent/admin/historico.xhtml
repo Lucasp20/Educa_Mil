@@ -15,33 +15,21 @@
 		<p:panel header="Histórico Escolar">
 
 			<p:tabView id="tab_view" activeIndex="#{notaC.aba}">
-
 				<p:tab title="Histórico">
 						<h:form id="form_histórico">
-						
-							<div class="p-field p-col-12 p-md-10">
-								<p:outputLabel for="disciplina" value="Nome" />
-								<p:spacer width="2%" />
-								<p:inputText id="disciplina"
-									value="#{disciplinaC.disciplina.nome}" placeholder="Pesquisar" />
-								<p:spacer width="2%" />
-								<p:commandButton value="Pesquisar" update="tabela disciplina"
-									action="#{disciplinaC.pesquisarPorNome}"
-									styleClass="btn-primary" />
-							</div>
-							
-							<div class="ui-fluid p-formgrid p-grid">
-							
+											
+							<div class="ui-fluid p-formgrid p-grid">							
 							<div class="p-field p-col-12 p-md-2">
 								<p:outputLabel for="turma" value="Pelotão" />
 								<p:selectOneMenu id="turma" value="#{notaC.turma.id}"
 									dynamic="true" filter="true" filterMatchMode="startsWith" >
+									 <p:ajax listener="#{disciplinaC.pesquisarNotaAluno}" update="tabela"/>
+									
 									<f:selectItem itemLabel="Escolha o pelotão" itemValue="" />
-									<f:selectItems value="#{notaC.comboTurmas}" />
+									<f:selectItems value="#{disciplinaC.comboTurmas}" />
 								</p:selectOneMenu>
 							</div>
 							</div>
-					
 
 							<p:commandButton value="PDF" icon="fa fa-file-pdf-o" ajax="false"
 								styleClass="p-mr-2 p-mb-2 ui-button-raised rounded-button ui-button-danger">
@@ -71,7 +59,7 @@
 									<h:outputText value="#{disciplina.cargaHoraria}" />
 								</p:column>
 								
-								<p:column headerText="Média" style="text-align:center">
+								<p:column headerText="Nota Final" style="text-align:center">
 									<h:outputText value="#{disciplina.cargaHoraria}" />
 								</p:column>
 

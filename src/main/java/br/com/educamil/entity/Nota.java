@@ -53,7 +53,6 @@ public class Nota implements Serializable {
     private Aluno aluno;
 
    
-
     public Nota(double notaUm, double notaDois, double notaTres, double notaFinal) {
 		super();
 		this.notaUm = notaUm;

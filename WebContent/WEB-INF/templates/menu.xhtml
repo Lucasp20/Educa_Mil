@@ -5,45 +5,68 @@
 
 	<nav class="aw-menu">
 		<h:form>
-			<p:menu toggleable="true" style="width: 98%;  margin-left: 3px;">
+			<h:panelGroup rendered="#{request.isUserInRole('ROLE_ADMIN')}">
+				<p:menu toggleable="true" style="width: 98%;  margin-left: 3px;">
 
-				<p:menuitem value="Home" outcome="/comum/index.xhtml"
-					icon="fa fa-home" />
+					<p:menuitem value="Home" outcome="/comum/index.xhtml"
+						icon="fa fa-home" />
 
-				<p:menuitem value="Direção" outcome="/admin/direcao.xhtml"
-					icon="fa fa-user" />
+					<p:menuitem value="Direção" outcome="/admin/direcao.xhtml"
+						icon="fa fa-user" />
 
-				<p:menuitem value="Professores" outcome="/admin/professor.xhtml"
-					icon="fa fa-graduation-cap" />
+					<p:menuitem value="Professores" outcome="/admin/professor.xhtml"
+						icon="fa fa-graduation-cap" />
 
-				<p:menuitem value="Alunos" outcome="/comum/aluno.xhtml" icon="fa fa-users" />
+					<p:menuitem value="Alunos" outcome="/admin/aluno.xhtml"
+						icon="fa fa-users" />
 
-				<p:menuitem value="Pelotão" outcome="/turma.xhtml" icon="fa fa-file" />
+					<p:menuitem value="Pelotão" outcome="/admin/turma.xhtml"
+						icon="fa fa-file" />
 
-				<p:menuitem value="Notas" outcome="/nota.xhtml"
-					icon="fa fa-file-text" />
+					<p:menuitem value="Notas" outcome="/admin/nota.xhtml"
+						icon="fa fa-file-text" />
 
-				<p:menuitem value="Disciplinas" outcome="/disciplina.xhtml"
-					icon="fa fa-file-text" />
 
-				<p:menuitem value="Histórico Escolar" outcome="/historico.xhtml"
-					icon="fa fa-file-text" />
+					<p:menuitem value="Disciplinas" outcome="/admin/disciplina.xhtml"
+						icon="fa fa-file-text" />
 
-				<p:menuitem value="Biblioteca"
-					url="http://www.redebim.dphdm.mar.mil.br/" icon="fa fa-book"
-					target="_blank" />
 
-				<p:menuitem value="EAMSC" url="https://www.marinha.mil.br/eamsc/"
-					icon="fa fa-university" target="_blank" />
+					<p:menuitem value="Biblioteca"
+						url="http://www.redebim.dphdm.mar.mil.br/" icon="fa fa-book"
+						target="_blank" />
 
-				<p:menuitem value="Usuários do Sistema"
-					outcome="/admin/usuario.xhtml" icon="fa fa-user" />
+					<p:menuitem value="EAMSC" url="https://www.marinha.mil.br/eamsc/"
+						icon="fa fa-university" target="_blank" />
+
+					<p:menuitem value="Usuários do Sistema"
+						outcome="/admin/usuario.xhtml" icon="fa fa-user" />
+
 					<p:separator />
-	
-				<p:menuitem value="Sair"
-					 icon="fa fa-sign-out" />
+					<p:menuitem value="Sair" outcome="/login.xhtml"
+						icon="fa fa-sign-out" />
+				</p:menu>
+			</h:panelGroup>
 
-			</p:menu>
+			<h:panelGroup rendered="#{request.isUserInRole('ROLE_COMUM')}">
+
+				<p:menu toggleable="true" style="width: 98%;  margin-left: 3px;">
+
+					<p:menuitem value="Histórico Escolar"
+						outcome="/comum/historico.xhtml" icon="fa fa-file-text" />
+
+					<p:menuitem value="Biblioteca"
+						url="http://www.redebim.dphdm.mar.mil.br/" icon="fa fa-book"
+						target="_blank" />
+
+					<p:menuitem value="EAMSC" url="https://www.marinha.mil.br/eamsc/"
+						icon="fa fa-university" target="_blank" />
+
+					<p:separator />
+					<p:menuitem value="Sair" outcome="/login.xhtml"
+						icon="fa fa-sign-out" />
+				</p:menu>
+
+			</h:panelGroup>
 		</h:form>
 	</nav>
 </ui:composition>

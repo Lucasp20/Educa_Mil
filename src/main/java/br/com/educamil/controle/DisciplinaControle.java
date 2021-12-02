@@ -95,6 +95,15 @@ public class DisciplinaControle {
 		sessao.close();
 	}
 	
+	public void pesquisarNotaAluno (){
+		sessao = HibernateUtil.abrirSessao();
+		try {
+			
+		} catch (Exception e) {
+			
+		}
+	}
+	
 	public void comboBoxPelotao() {
 		sessao = HibernateUtil.abrirSessao();
 		TurmaDao turmaDao = new TurmaDaoImpl();
