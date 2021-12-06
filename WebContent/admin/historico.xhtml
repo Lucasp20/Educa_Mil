@@ -14,23 +14,33 @@
 	<ui:define name="content">
 		<p:panel header="Histórico Escolar">
 
-			<p:tabView id="tab_view" activeIndex="#{disciplinaC.aba}">
+			<p:tabView id="tab_view" activeIndex="#{notaC.aba}">
 				<p:tab title="Histórico">
 					<h:form id="form_histórico">
 
 						<div class="ui-fluid p-formgrid p-grid">
 							<div class="p-field p-col-12 p-md-2">
-								<p:selectOneMenu id="turma" value="#{turmaC.turma.id}"
+								<p:selectOneMenu id="turma" value="#{notaC.turma.pelotao}"
 									dynamic="true" filter="true" filterMatchMode="startsWith">
 
 									<f:selectItem itemLabel="Escolha o Pelotão" itemValue="" />
-									<f:selectItems value="#{disciplinaC.comboTurmas}" />
+									<f:selectItems value="#{notaC.comboTurmas}" />
+								</p:selectOneMenu>
+							</div>
+
+							<div class="p-field p-col-12 p-md-2">
+								<p:selectOneMenu id="disciplina"
+									value="#{notaC.disciplina.nome}" dynamic="true" filter="true"
+									filterMatchMode="startsWith">
+
+									<f:selectItem itemLabel="Escolha a Disciplina" itemValue="" />
+									<f:selectItems value="#{notaC.comboDisciplinas}" />
 								</p:selectOneMenu>
 							</div>
 
 							<div class="p-field p-col-6 p-md-1">
 								<p:commandButton value="Pesquisar" update="tabela"
-								action="#{disciplinaC.pesquisarPorNome}"
+									action="#{notaC.pesquisarAlunoPelotao()}"
 									styleClass="btn-primary" />
 							</div>
 						</div>
@@ -41,24 +51,24 @@
 								pageOnly="true" />
 						</p:commandButton>
 
-						<p:dataTable id="tabela" var="disciplina"
-							value="#{disciplinaC.modeldisciplinas}" rows="10"
+						<p:dataTable id="tabela" var="nota"
+							value="#{notaC.modelNotas}" rows="10"
 							paginator="true" paginatorPosition="bottom"
 							currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
 							rowsPerPageTemplate="5,10,15,{ShowAll|'20'}">
-
+							
 							<p:column headerText="Disciplina" style="text-align:center">
-								<h:outputText value="#{disciplina.nome}" />
+								<h:outputText value="#{nota.disciplina.nome}" />
 							</p:column>
 
 							<p:column headerText="Carga Horária" style="text-align:center">
-								<h:outputText value="#{disciplina.cargaHoraria}" />
+								<h:outputText value="#{nota.disciplina.cargaHoraria}" />
 							</p:column>
 
 							<p:column headerText="Nota Final" style="text-align:center">
-								<h:outputText value="#{disciplina.nota.notaFinal}" />
+								<h:outputText value="#{nota.notaFinal}" />
 							</p:column>
-							
+
 						</p:dataTable>
 						<p:separator />
 					</h:form>

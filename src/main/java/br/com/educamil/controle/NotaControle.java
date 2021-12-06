@@ -113,12 +113,30 @@ public class NotaControle {
 			for(Nota nota: disciplina.getNotas()) {
 				System.out.println(nota.getNotaUm() + "  " + nota.getAluno().getNome() + "  "  );
 				}
+//			int i=0;
+//			for(Nota modelNota: modelNotas ) {
+//				Aluno aluno = disciplina.getNotas().get(i).getAluno();
+//				modelNota.setAluno(aluno);
+//				modelNota.setNome(aluno.getNome());
+//				System.out.println("teste" + modelNota.getNotaUm() + "  " + modelNota.getAluno().getNome() + "  "  );
+//				i++;
+			//}
 		} catch (HibernateException e) {
 			System.out.println("Erro ao pesquisar alunos por nome: " + e.getMessage());
 		} finally {
 			sessao.close();
 		}
 	}
+    
+public double mediaNotas() {
+    	
+    	List<Turma> turmas = new ArrayList<Turma>();
+    	
+    	for(int i=0; i <= turmas.size(); i++) {
+    		
+    	} 	
+    	return (Double) null;
+    }
       
     
 	public Nota getNota() {
