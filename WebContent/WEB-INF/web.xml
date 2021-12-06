@@ -39,7 +39,6 @@
 </context-param>
     
     <!-- Configurações SPRING SECURITY -->
-<<<<<<< HEAD
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>/WEB-INF/applicationContext.xml</param-value>
@@ -68,29 +67,6 @@
         <dispatcher>FORWARD</dispatcher>
         <dispatcher>REQUEST</dispatcher>
     </filter-mapping>
-=======
-<!--     <context-param> -->
-<!--         <param-name>contextConfigLocation</param-name> -->
-<!--         <param-value>/WEB-INF/applicationContext.xml</param-value> -->
-<!--     </context-param> -->
-<!--     <listener> -->
-<!--         <listener-class> -->
-<!--             org.springframework.web.context.ContextLoaderListener -->
-<!--         </listener-class> -->
-<!--     </listener> -->
-<!--     <filter> -->
-<!--         <filter-name>springSecurityFilterChain</filter-name> -->
-<!--         <filter-class> -->
-<!--             org.springframework.web.filter.DelegatingFilterProxy -->
-<!--         </filter-class> -->
-<!--     </filter> -->
-<!--     <filter-mapping> -->
-<!--         <filter-name>springSecurityFilterChain</filter-name> -->
-<!--         <url-pattern>/*</url-pattern> -->
-<!--         <dispatcher>FORWARD</dispatcher> -->
-<!--         <dispatcher>REQUEST</dispatcher> -->
-<!--     </filter-mapping> -->
->>>>>>> branch 'main' of https://github.com/Lucasp20/Educa_Mil.git
     
     <!-- Fim Configurações SPRING SECURITY -->
    

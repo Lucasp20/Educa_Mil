@@ -104,17 +104,6 @@ public class DirecaoControle {
 					new FacesMessage(FacesMessage.SEVERITY_WARN, "Não existe nenhum cep com esse valor", null));
 		}
 	}
-	
-	/* mudar aba para novo */
-	public void onTabChange(TabChangeEvent event) {
-		if (event.getTab().getTitle().equals("Novo"))
-			;
-	}
-
-	public void onTabClose(TabCloseEvent event) {
-	}
-	
-	/* fim mudar aba para novo */
 
 	public Direcao getDirecao() {
 		if (direcao == null) {

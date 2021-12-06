@@ -76,18 +76,6 @@ public class Disciplina implements Serializable {
         this.cargaHoraria = cargaHoraria;
     }
 
-<<<<<<< HEAD
-=======
-    public List<Nota> getNotas() {
-        return notas;
-    }
-
-    public void setNotas(List<Nota> notas) {
-        this.notas = notas;
-    }
-
->>>>>>> branch 'main' of https://github.com/Lucasp20/Educa_Mil
-
 	@Override
     public int hashCode() {
         final int prime = 31;

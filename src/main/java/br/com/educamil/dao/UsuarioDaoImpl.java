@@ -8,6 +8,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import br.com.educamil.entity.Aluno;
+import br.com.educamil.entity.Perfil;
 import br.com.educamil.entity.Usuario;
 
 public class UsuarioDaoImpl extends BaseDaoImpl<Usuario, Long> implements UsuarioDao, Serializable {
@@ -29,5 +30,13 @@ public class UsuarioDaoImpl extends BaseDaoImpl<Usuario, Long> implements Usuari
 		Query consulta = sessao.createQuery("from Usuario order by login");
 		return consulta.list();
 	}
+
+	@Override
+	public List<Usuario> pesquisarUsuarioLogin(String login, Session sessao) throws HibernateException {
+		Query consulta = sessao.createQuery("from Usuario where login like :login");
+		consulta.setParameter("login", "%" + login + "%");
+		return consulta.list();
+	}
+
 
 }

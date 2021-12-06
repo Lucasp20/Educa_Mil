@@ -11,10 +11,7 @@
 		<p:panel header="Alunos">
 
 			<p:tabView id="tab_view" activeIndex="#{alunoC.aba}">
-				<p:ajax event="tabChange" listener="#{alunoC.onTabChange}"
-					update="tab_view:form_novo:turma" />
-				<p:ajax event="tabClose" listener="#{alunoC.onTabClose}" />
-
+				
 				<p:tab title="Cadastros">
 					<h:form id="form_novo">
 						<div class="ui-fluid p-formgrid p-grid">
@@ -26,12 +23,10 @@
 									requiredMessage="Matricula é Obrigatório!">
 									<p:keyFilter mask="mat" />
 								</p:inputText>
-
 							</div>
-
 							<p:spacer width="16.80%" />
 
-							<div class="p-field p-col-12 p-md-4">
+							<div class="p-field p-col-12 p-md-2">
 								<p:outputLabel for="turma" value="Pelotão" />
 								<p:selectOneMenu id="turma" value="#{alunoC.turma.id}"
 									required="true" requiredMessage="Pelotão é Obrigatório!"

@@ -5,7 +5,7 @@
 
 	<nav class="aw-menu">
 		<h:form>
-			<h:panelGroup rendered="#{request.isUserInRole('ROLE_ADMIN')}">
+			<h:panelGroup rendered="#{request.isUserInRole('ADMIN')}">
 				<p:menu toggleable="true" style="width: 98%;  margin-left: 3px;">
 
 					<p:menuitem value="Home" outcome="/comum/index.xhtml"
@@ -26,10 +26,11 @@
 					<p:menuitem value="Notas" outcome="/admin/nota.xhtml"
 						icon="fa fa-file-text" />
 
-
 					<p:menuitem value="Disciplinas" outcome="/admin/disciplina.xhtml"
 						icon="fa fa-file-text" />
 
+					<p:menuitem value="Histórico Escolar"
+						outcome="/admin/historico.xhtml" icon="fa fa-file-text" />
 
 					<p:menuitem value="Biblioteca"
 						url="http://www.redebim.dphdm.mar.mil.br/" icon="fa fa-book"
@@ -47,7 +48,7 @@
 				</p:menu>
 			</h:panelGroup>
 
-			<h:panelGroup rendered="#{request.isUserInRole('ROLE_COMUM')}">
+			<h:panelGroup rendered="#{request.isUserInRole('COMUM')}">
 
 				<p:menu toggleable="true" style="width: 98%;  margin-left: 3px;">
 

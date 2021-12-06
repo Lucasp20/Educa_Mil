@@ -2,7 +2,6 @@ package br.com.educamil.controle;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.*;
@@ -13,19 +12,10 @@ import javax.faces.model.SelectItem;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.primefaces.event.TabChangeEvent;
-import org.primefaces.event.TabCloseEvent;
-import br.com.educamil.entity.Aluno;
-import br.com.educamil.entity.Endereco;
-import br.com.educamil.webservice.WebServiceEndereco;
-import br.com.educamil.dao.AlunoDao;
-import br.com.educamil.dao.AlunoDaoImpl;
-import br.com.educamil.dao.HibernateUtil;
-import br.com.educamil.dao.TurmaDao;
-import br.com.educamil.dao.TurmaDaoImpl;
-import br.com.educamil.dao.UsuarioDao;
-import br.com.educamil.dao.UsuarioDaoImpl;
+
+import br.com.educamil.entity.Perfil;
 import br.com.educamil.entity.Turma;
+import br.com.educamil.dao.*;
 import br.com.educamil.entity.Usuario;
 
 @ManagedBean(name = "usuarioC")
@@ -35,18 +25,22 @@ public class UsuarioControle {
 	private Usuario usuario;
 	private UsuarioDao usuarioDao;
 	private Session sessao;
+	private List<Usuario> usuarios;
 	private DataModel<Usuario> modelUsuarios;
+	private List<SelectItem> comboPerfis;
+	private Perfil perfil;
 	private int aba;
 
 	public UsuarioControle() {
 		usuarioDao = new UsuarioDaoImpl();
+	
 	}
 
 	public void salvar() throws NoSuchAlgorithmException {
 		sessao = HibernateUtil.abrirSessao();
-		/* String hash = new String(this.getHash(usuario)); */
+//		 String hash = new String(this.getHash(usuario)); 
 		try {
-			/* usuario.setSenha(hash); */
+//			usuario.setSenha(hash); 
 			usuarioDao.salvarOuAlterar(usuario, sessao);
 			usuario = null;
 			FacesContext.getCurrentInstance().addMessage(null,
@@ -76,23 +70,25 @@ public class UsuarioControle {
 			sessao.close();
 		}
 	}
-
+	
 	public void alterar() {
 		usuario = modelUsuarios.getRowData();
 		aba = 0;
 	}
-
-
-	/* Inicio mudar aba para novo */
-	public void onTabChange(TabChangeEvent event) {
-		if (event.getTab().getTitle().equals("Novo"));
-		
+	
+	public void pesquisarUsuarioLogin() {
+		sessao = HibernateUtil.abrirSessao();
+		try {
+			usuarios = usuarioDao.pesquisarUsuarioLogin(usuario.getLogin(), sessao);
+			modelUsuarios = new ListDataModel<>(usuarios);
+			usuario.setLogin(null);
+		} catch (HibernateException e) {
+			System.out.println("Erro ao pesquisar usuários por login" + e.getMessage());
+		}
+		sessao.close();
+	
 	}
-
-	public void onTabClose(TabCloseEvent event) {
-	}
-
-	/* Fim mudar aba para novo */
+	
 
 	public Usuario getUsuario() {
 		if (usuario == null) {
@@ -123,6 +119,23 @@ public class UsuarioControle {
 
 	public void setModelUsuarios(DataModel<Usuario> modelUsuarios) {
 		this.modelUsuarios = modelUsuarios;
+	}
+	
+	
+	public List<SelectItem> getComboPerfis() {
+		return comboPerfis;
+	}
+	
+
+	public Perfil getPerfil() {
+		if (perfil == null) {
+			perfil = new Perfil();
+		}
+		return perfil;
+	}
+
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil;
 	}
 
 	private String getHash(Usuario usuario) throws NoSuchAlgorithmException {

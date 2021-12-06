@@ -22,19 +22,16 @@ public class Turma {
     
     @OneToMany(mappedBy = "turma")
     private List<Aluno> aluno;
-<<<<<<< HEAD
+
     
 	@OneToMany() 
 	private List<Disciplina> Disciplinas;
-		
-=======
+
     	
 	@OneToMany(mappedBy = "turma") 
 	private List<Disciplina> disciplinas;
 	
     
-	
->>>>>>> branch 'main' of https://github.com/Lucasp20/Educa_Mil.git
     public Turma(String pelotao, String ano) {
         super();
         this.pelotao = pelotao;

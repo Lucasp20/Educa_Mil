@@ -14,61 +14,55 @@
 	<ui:define name="content">
 		<p:panel header="Histórico Escolar">
 
-			<p:tabView id="tab_view" activeIndex="#{notaC.aba}">
+			<p:tabView id="tab_view" activeIndex="#{disciplinaC.aba}">
 				<p:tab title="Histórico">
-						<h:form id="form_histórico">
-											
-							<div class="ui-fluid p-formgrid p-grid">							
+					<h:form id="form_histórico">
+
+						<div class="ui-fluid p-formgrid p-grid">
 							<div class="p-field p-col-12 p-md-2">
-								<p:outputLabel for="turma" value="Pelotão" />
-								<p:selectOneMenu id="turma" value="#{notaC.turma.id}"
-									dynamic="true" filter="true" filterMatchMode="startsWith" >
-									 <p:ajax listener="#{disciplinaC.pesquisarNotaAluno}" update="tabela"/>
-									
-									<f:selectItem itemLabel="Escolha o pelotão" itemValue="" />
+								<p:selectOneMenu id="turma" value="#{turmaC.turma.id}"
+									dynamic="true" filter="true" filterMatchMode="startsWith">
+
+									<f:selectItem itemLabel="Escolha o Pelotão" itemValue="" />
 									<f:selectItems value="#{disciplinaC.comboTurmas}" />
 								</p:selectOneMenu>
 							</div>
+
+							<div class="p-field p-col-6 p-md-1">
+								<p:commandButton value="Pesquisar" update="tabela"
+								action="#{disciplinaC.pesquisarPorNome}"
+									styleClass="btn-primary" />
 							</div>
+						</div>
 
-							<p:commandButton value="PDF" icon="fa fa-file-pdf-o" ajax="false"
-								styleClass="p-mr-2 p-mb-2 ui-button-raised rounded-button ui-button-danger">
-								<p:dataExporter type="pdf" target="tabela"
-									fileName="Histórico" pageOnly="true" />
-							</p:commandButton>
+						<p:commandButton value="PDF" icon="fa fa-file-pdf-o" ajax="false"
+							styleClass="p-mr-2 p-mb-2 ui-button-raised rounded-button ui-button-danger">
+							<p:dataExporter type="pdf" target="tabela" fileName="Histórico"
+								pageOnly="true" />
+						</p:commandButton>
 
-							<p:dataTable id="tabela" var="disciplina"
-								value="#{disciplinaC.modeldisciplinas}" rows="10"
-								paginator="true" paginatorPosition="bottom"
-								currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
-								rowsPerPageTemplate="5,10,15,{ShowAll|'20'}">
+						<p:dataTable id="tabela" var="disciplina"
+							value="#{disciplinaC.modeldisciplinas}" rows="10"
+							paginator="true" paginatorPosition="bottom"
+							currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+							rowsPerPageTemplate="5,10,15,{ShowAll|'20'}">
+
+							<p:column headerText="Disciplina" style="text-align:center">
+								<h:outputText value="#{disciplina.nome}" />
+							</p:column>
+
+							<p:column headerText="Carga Horária" style="text-align:center">
+								<h:outputText value="#{disciplina.cargaHoraria}" />
+							</p:column>
+
+							<p:column headerText="Nota Final" style="text-align:center">
+								<h:outputText value="#{disciplina.nota.notaFinal}" />
+							</p:column>
 							
-								<p:column headerText="Disciplina" style="text-align:center">
-									<h:outputText value="#{disciplina.tipoEnsino}" />
-								</p:column>
-
-								<p:column headerText="Nota 1" style="text-align:center">
-									<h:outputText value="#{disciplina.cargaHoraria}" />
-								</p:column>
-								
-								<p:column headerText="Nota 2" style="text-align:center">
-									<h:outputText value="#{disciplina.cargaHoraria}" />
-								</p:column>
-								
-								<p:column headerText="Nota 3" style="text-align:center">
-									<h:outputText value="#{disciplina.cargaHoraria}" />
-								</p:column>
-								
-								<p:column headerText="Nota Final" style="text-align:center">
-									<h:outputText value="#{disciplina.cargaHoraria}" />
-								</p:column>
-
-							</p:dataTable>
-
-							<p:separator />
-
-						</h:form>
-					</p:tab>
+						</p:dataTable>
+						<p:separator />
+					</h:form>
+				</p:tab>
 			</p:tabView>
 		</p:panel>
 	</ui:define>

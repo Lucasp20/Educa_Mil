@@ -32,6 +32,7 @@ public class DisciplinaControle {
 	private DisciplinaDao disciplinaDao;
 	private Session sessao;
 	private Turma turma;
+	private Nota nota;
 	private List<Disciplina> disciplinas;
 	private DataModel<Disciplina> modeldisciplinas;
 	private List<SelectItem> comboTurmas;
