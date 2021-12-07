@@ -19,7 +19,9 @@
 					<h:form id="form_histórico">
 
 						<div class="ui-fluid p-formgrid p-grid">
+
 							<div class="p-field p-col-12 p-md-2">
+								<p:outputLabel for="turma" value="Pelotão" />
 								<p:selectOneMenu id="turma" value="#{notaC.turma.pelotao}"
 									dynamic="true" filter="true" filterMatchMode="startsWith">
 
@@ -29,6 +31,7 @@
 							</div>
 
 							<div class="p-field p-col-12 p-md-2">
+								<p:outputLabel for="disciplina" value="Disciplina" />
 								<p:selectOneMenu id="disciplina"
 									value="#{notaC.disciplina.nome}" dynamic="true" filter="true"
 									filterMatchMode="startsWith">
@@ -37,26 +40,25 @@
 									<f:selectItems value="#{notaC.comboDisciplinas}" />
 								</p:selectOneMenu>
 							</div>
+					</div>
 
-							<div class="p-field p-col-6 p-md-1">
+							<div class="p-field p-col-12 p-md-10">
 								<p:commandButton value="Pesquisar" update="tabela"
 									action="#{notaC.pesquisarAlunoPelotao()}"
 									styleClass="btn-primary" />
 							</div>
-						</div>
-
+					
 						<p:commandButton value="PDF" icon="fa fa-file-pdf-o" ajax="false"
 							styleClass="p-mr-2 p-mb-2 ui-button-raised rounded-button ui-button-danger">
 							<p:dataExporter type="pdf" target="tabela" fileName="Histórico"
 								pageOnly="true" />
 						</p:commandButton>
 
-						<p:dataTable id="tabela" var="nota"
-							value="#{notaC.modelNotas}" rows="10"
-							paginator="true" paginatorPosition="bottom"
+						<p:dataTable id="tabela" var="nota" value="#{notaC.modelNotas}"
+							rows="10" paginator="true" paginatorPosition="bottom"
 							currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
 							rowsPerPageTemplate="5,10,15,{ShowAll|'20'}">
-							
+
 							<p:column headerText="Disciplina" style="text-align:center">
 								<h:outputText value="#{nota.disciplina.nome}" />
 							</p:column>
